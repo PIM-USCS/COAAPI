@@ -4,52 +4,66 @@ import Clientes from "../typeorm/entities/Clientes";
 import { ClienteRepository } from "../typeorm/repositories/ClienteRepository";
 
 interface IRequest {
+  tipo_cliente: string;
+  regime: string;
+  cnpj: string;
+  ie: string;
   cpf: string;
+  rg: string;
   nome: string;
-  telefone: string;
   cep: string;
   rua: string;
-  bairro: string;
   cidade: string;
-  numero: string;
   uf: string;
-  complemento?: string;
+  bairro: string;
+  numero: string;
+  complemento: string;
 }
 
 class CreateClienteService {
   public async execute({
+    tipo_cliente,
+    regime,
+    cnpj,
+    ie,
     cpf,
+    rg,
     nome,
-    telefone,
-    bairro,
     cep,
-    cidade,
-    numero,
     rua,
+    cidade,
     uf,
+    bairro,
+    numero,
     complemento,
   }: IRequest): Promise<Clientes> {
     const clientesRepository = getCustomRepository(ClienteRepository);
-    const clienteExist = await clientesRepository.findByID(cpf);
+    const clienteExistCPF = await clientesRepository.findByCPF(cpf);
+    const clienteExistCNPJ = await clientesRepository.findByCPF(cnpj);
 
-    if (clienteExist) {
-      // throw new AppError("O cliente com este CPF já existe.");
-      const clientes = await clientesRepository.findOne(cpf);
+    if (clienteExistCPF) {
+      throw new AppError("Já existe um cliente com este CPF");
     }
 
-    if (cep.length === 7) {
-      cep = "0" + cep;
+    if (clienteExistCNPJ) {
+      throw new AppError("Já existe um cliente com este CNPJ");
     }
+
     const cliente = await clientesRepository.create({
+      tipo_cliente,
+      regime,
+      cnpj,
+      ie,
       cpf,
+      rg,
       nome,
-      telefone,
-      bairro,
       cep,
-      cidade,
-      numero,
       rua,
+      cidade,
       uf,
+      bairro,
+      numero,
+      complemento,
     });
 
     await clientesRepository.save(cliente);

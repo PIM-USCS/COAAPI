@@ -4,51 +4,63 @@ import Clientes from "../typeorm/entities/Clientes";
 import { ClienteRepository } from "../typeorm/repositories/ClienteRepository";
 
 interface IRequest {
+  id: string;
+  tipo_cliente: string;
+  regime: string;
+  cnpj: string;
+  ie: string;
   cpf: string;
+  rg: string;
   nome: string;
-  telefone: string;
-  rua: string;
   cep: string;
+  rua: string;
   cidade: string;
-  bairro: string;
   uf: string;
+  bairro: string;
   numero: string;
+  complemento: string;
 }
 
 class UpdateClienteService {
   public async execute({
+    id,
+    tipo_cliente,
+    regime,
+    cnpj,
+    ie,
     cpf,
+    rg,
     nome,
-    telefone,
     cep,
-    bairro,
-    cidade,
-    numero,
     rua,
+    cidade,
     uf,
+    bairro,
+    numero,
+    complemento,
   }: IRequest): Promise<Clientes> {
     const clientesRepository = getCustomRepository(ClienteRepository);
 
-    const clientes = await clientesRepository.findOne(cpf);
+    const clientes = await clientesRepository.findOne(id);
 
     if (!clientes) {
       throw new AppError("Cliente não encontrado.");
     }
 
-    // const clienteExists = await clientesRepository.findByID(cpf);
-
-    // if (clienteExists && cpf !== clientes.cpf) {
-    //   throw new AppError("Já existe um cliente com este CPF.");
-    // }
-
+    clientes.tipo_cliente = tipo_cliente;
+    clientes.regime = regime;
+    clientes.cnpj = cnpj;
+    clientes.ie = ie;
+    clientes.cpf = cpf;
+    clientes.rg = rg;
     clientes.nome = nome;
-    clientes.telefone = telefone;
     clientes.cep = cep;
     clientes.rua = rua;
     clientes.cidade = cidade;
-    clientes.bairro = bairro;
     clientes.uf = uf;
+    clientes.bairro = bairro;
     clientes.numero = numero;
+    clientes.complemento = complemento;
 
     await clientesRepository.save(clientes);
     return clientes;

@@ -1,24 +1,36 @@
-import Pedido from "../../../../modules/pedidos/typeorm/entities/Pedido";
 import {
   Column,
   CreateDateColumn,
   Entity,
-  OneToMany,
   PrimaryColumn,
   UpdateDateColumn,
 } from "typeorm";
-import Item from "../../../../modules/itens/typeorm/entities/Item";
 
 @Entity("clientes")
 class Clientes {
   @PrimaryColumn()
+  id: string;
+
+  @Column()
+  tipo_cliente: string;
+
+  @Column()
+  regime: string;
+
+  @Column()
+  cnpj: string;
+
+  @Column()
+  ie: string;
+
+  @Column()
   cpf: string;
 
   @Column()
-  nome: string;
+  rg: string;
 
   @Column()
-  telefone: string;
+  nome: string;
 
   @Column()
   cep: string;
@@ -30,26 +42,22 @@ class Clientes {
   cidade: string;
 
   @Column()
-  bairro: string;
-
-  @Column()
   uf: string;
 
   @Column()
+  bairro: string;
+
+  @Column()
   numero: string;
+
+  @Column()
+  complemento: string;
 
   @CreateDateColumn()
   created_at: Date;
 
   @UpdateDateColumn()
   update_at: Date;
-
-  @OneToMany(() => Pedido, (pedidos) => pedidos.cliente)
-  pedidos: Pedido[];
-
-  @OneToMany(() => Item, (itens) => itens.clientes)
-  itens: Item[];
-  static cpf: any;
 }
 
 export default Clientes;

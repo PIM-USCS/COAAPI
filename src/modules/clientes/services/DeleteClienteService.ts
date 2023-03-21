@@ -2,14 +2,14 @@ import { getCustomRepository } from "typeorm";
 import { ClienteRepository } from "../typeorm/repositories/ClienteRepository";
 
 interface IRequest {
-  cpf: string;
+  id: string;
 }
 
 class DeleteClienteService {
-  public async execute({ cpf }: IRequest): Promise<void> {
+  public async execute({ id }: IRequest): Promise<void> {
     const clientesRepository = getCustomRepository(ClienteRepository);
 
-    const clientes = await clientesRepository.findOne(cpf);
+    const clientes = await clientesRepository.findOne(id);
 
     if (!clientes) {
       throw new Error("Cliente não encontrado.");

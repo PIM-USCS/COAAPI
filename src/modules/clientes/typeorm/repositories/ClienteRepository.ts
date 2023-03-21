@@ -3,8 +3,17 @@ import Clientes from "../entities/Clientes";
 
 @EntityRepository(Clientes)
 export class ClienteRepository extends Repository<Clientes> {
-  public async findByID(cpf: string): Promise<Clientes | undefined> {
+  public async findByCPF(
+    cpf: string | undefined
+  ): Promise<Clientes | undefined> {
     const cliente = this.findOne({ where: { cpf } });
+    return cliente;
+  }
+
+  public async findByCNPJ(
+    cnpj: string | undefined
+  ): Promise<Clientes | undefined> {
+    const cliente = this.findOne({ where: { cnpj } });
     return cliente;
   }
 }

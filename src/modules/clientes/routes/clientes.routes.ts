@@ -8,10 +8,10 @@ const clientesController = new ClientesController();
 clientesRouter.get("/", clientesController.index);
 
 clientesRouter.get(
-  "/:cpf",
+  "/:id",
   celebrate({
     [Segments.PARAMS]: {
-      cpf: Joi.string().required(),
+      id: Joi.string().required(),
     },
   }),
   clientesController.show
@@ -21,14 +21,18 @@ clientesRouter.post(
   "/",
   celebrate({
     [Segments.BODY]: {
-      cpf: Joi.string().required(),
+      tipo_cliente: Joi.string().required(),
+      regime: Joi.string(),
+      cnpj: Joi.string(),
+      ie: Joi.string(),
+      cpf: Joi.string(),
+      rg: Joi.string(),
       nome: Joi.string().required(),
-      telefone: Joi.string().required(),
       cep: Joi.string().required(),
       rua: Joi.string().required(),
       cidade: Joi.string().required(),
-      bairro: Joi.string().required(),
       uf: Joi.string().required(),
+      bairro: Joi.string().required(),
       numero: Joi.string().required(),
       complemento: Joi.string(),
     },
@@ -37,31 +41,36 @@ clientesRouter.post(
 );
 
 clientesRouter.put(
-  "/:cpf",
+  "/:id",
   celebrate({
     [Segments.BODY]: {
+      tipo_cliente: Joi.string(),
+      regime: Joi.string(),
+      cnpj: Joi.string(),
+      ie: Joi.string(),
+      cpf: Joi.string(),
+      rg: Joi.string(),
       nome: Joi.string(),
-      telefone: Joi.string(),
       cep: Joi.string(),
       rua: Joi.string(),
       cidade: Joi.string(),
-      bairro: Joi.string(),
       uf: Joi.string(),
+      bairro: Joi.string(),
       numero: Joi.string(),
       complemento: Joi.string(),
     },
     [Segments.PARAMS]: {
-      cpf: Joi.string().required(),
+      id: Joi.string().required(),
     },
   }),
   clientesController.update
 );
 
 clientesRouter.delete(
-  "/:cpf",
+  "/:id",
   celebrate({
     [Segments.PARAMS]: {
-      cpf: Joi.string().required(),
+      id: Joi.string().required(),
     },
   }),
   clientesController.delete

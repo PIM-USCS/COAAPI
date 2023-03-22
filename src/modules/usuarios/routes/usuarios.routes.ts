@@ -7,15 +7,15 @@ const usuariosController = new UsuariosController();
 
 usuariosRouter.get("/", usuariosController.index);
 
-// usuariosRouter.get(
-//   "/:id",
-//   celebrate({
-//     [Segments.PARAMS]: {
-//       id: Joi.string().required(),
-//     },
-//   }),
-//   clientesController.show
-// );
+usuariosRouter.get(
+  "/:id",
+  celebrate({
+    [Segments.PARAMS]: {
+      id: Joi.string().required(),
+    },
+  }),
+  usuariosController.show
+);
 
 usuariosRouter.post(
   "/",

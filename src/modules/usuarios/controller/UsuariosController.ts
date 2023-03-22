@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import CreateUsuarioService from "../services/CreateUsuarioService";
 import ListUsuarioService from "../services/ListUsuarioService";
+import ShowUsuarioService from "../services/ShowUsuarioService";
 
 export default class UsuariosController {
   public async index(request: Request, response: Response): Promise<Response> {
@@ -10,8 +11,15 @@ export default class UsuariosController {
 
     return response.json(usuarios);
   }
-  //   public async show(request: Request, response: Response): Promise<Response> {
-  //   }
+  public async show(request: Request, response: Response): Promise<Response> {
+    {
+      const { id } = request.params;
+      const showUsuario = new ShowUsuarioService();
+
+      const usuario = await showUsuario.execute({ id });
+      return response.json(usuario);
+    }
+  }
   public async create(request: Request, response: Response): Promise<Response> {
     try {
       const { nome, senha, avatar } = request.body;

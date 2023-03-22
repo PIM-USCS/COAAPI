@@ -23,41 +23,46 @@ export default class ClientesController {
     }
   }
   public async create(request: Request, response: Response): Promise<Response> {
-    const {
-      tipo_cliente,
-      regime,
-      cnpj,
-      ie,
-      cpf,
-      rg,
-      nome,
-      cep,
-      rua,
-      cidade,
-      uf,
-      bairro,
-      numero,
-      complemento,
-    } = request.body;
-    const createCliente = new CreateClienteService();
+    try {
+      const {
+        tipo_cliente,
+        regime,
+        cnpj,
+        ie,
+        cpf,
+        rg,
+        nome,
+        cep,
+        rua,
+        cidade,
+        uf,
+        bairro,
+        numero,
+        complemento,
+      } = request.body;
+      const createCliente = new CreateClienteService();
 
-    const cliente = await createCliente.execute({
-      tipo_cliente,
-      regime,
-      cnpj,
-      ie,
-      cpf,
-      rg,
-      nome,
-      cep,
-      rua,
-      cidade,
-      uf,
-      bairro,
-      numero,
-      complemento,
-    });
-    return response.json(cliente);
+      const cliente = await createCliente.execute({
+        tipo_cliente,
+        regime,
+        cnpj,
+        ie,
+        cpf,
+        rg,
+        nome,
+        cep,
+        rua,
+        cidade,
+        uf,
+        bairro,
+        numero,
+        complemento,
+      });
+      return response.json(cliente);
+    } catch (error) {
+      console.error(error);
+      return response.status(500).json();
+    }
   }
   public async update(request: Request, response: Response): Promise<Response> {
     const {

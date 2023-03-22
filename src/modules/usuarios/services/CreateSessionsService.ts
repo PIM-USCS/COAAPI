@@ -1,12 +1,12 @@
-import AppError from "@shared/errors/AppError";
-import { compare, hash } from "bcryptjs";
-import { getCustomRepository } from "typeorm";
-import Usuario from "../typeorm/entities/Usuario";
-import UsuariosRepostiroy from "../typeorm/repositories/UsuariosRepository";
+import AppError from '@shared/errors/AppError'
+import { compare, hash } from 'bcryptjs'
+import { getCustomRepository } from 'typeorm'
+import Usuario from '../typeorm/entities/Usuario'
+import UsuariosRepostiroy from '../typeorm/repositories/UsuariosRepository'
 
 interface IRequest {
-  nome: string;
-  senha: string;
+  nome: string
+  senha: string
 }
 
 // interface IResponse {
@@ -15,21 +15,21 @@ interface IRequest {
 
 class CreateSessionsService {
   public async execute({ nome, senha }: IRequest): Promise<Usuario> {
-    const usuariosRepository = getCustomRepository(UsuariosRepostiroy);
-    const user = await usuariosRepository.findByNome(nome);
+    const usuariosRepository = getCustomRepository(UsuariosRepostiroy)
+    const user = await usuariosRepository.findByNome(nome)
 
     if (!user) {
-      throw new AppError("Usuário/senha esta incorreto!");
+      throw new AppError('Usuário/senha esta incorreto!')
     }
 
-    const senhaConfirmed = await compare(senha, user.senha);
+    const senhaConfirmed = await compare(senha, user.senha)
 
     if (!senhaConfirmed) {
-      throw new AppError("Usuário/senha esta incorreto!");
+      throw new AppError('Senha esta incorreta!')
     }
 
-    return user;
+    return user
   }
 }
 
-export default CreateSessionsService;
+export default CreateSessionsService

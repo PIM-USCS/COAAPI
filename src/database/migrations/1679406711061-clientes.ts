@@ -89,6 +89,17 @@ export class clientes1679406711061 implements MigrationInterface {
             default: "now()",
           },
         ],
+
+        foreignKeys: [
+          {
+            name: "regime",
+            referencedTableName: "regime",
+            referencedColumnNames: ["id"],
+            columnNames: ["regime"],
+            onDelete: "CASCADE",
+            onUpdate: "CASCADE",
+          },
+        ],
       })
     );
   }

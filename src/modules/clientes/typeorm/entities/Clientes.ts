@@ -1,7 +1,10 @@
+import Regime from "../../../regime/typeorm/entities/Regime";
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
@@ -13,6 +16,10 @@ class Clientes {
 
   @Column()
   tipo_cliente: string;
+
+  @ManyToOne(() => Regime, (regime) => regime.id)
+  @JoinColumn({ name: "regime" })
+  cliente: Regime;
 
   @Column()
   regime: string;

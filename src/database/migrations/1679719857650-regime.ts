@@ -16,6 +16,17 @@ export class regime1679719857650 implements MigrationInterface {
             name: "descricao",
             type: "string",
           },
+          {
+            name: "created_at",
+            type: "timestamp",
+            default: "now()",
+          },
+
+          {
+            name: "update_at",
+            type: "timestamp",
+            default: "now()",
+          },
         ],
       })
     );

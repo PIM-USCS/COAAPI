@@ -20,6 +20,9 @@ export class Cobranca {
   emissao_cobranca: Date;
 
   @Column()
+  valor: string;
+
+  @Column()
   mimeType: string;
 
   @Column("blob")

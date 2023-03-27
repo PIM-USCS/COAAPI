@@ -22,6 +22,10 @@ export class cobrancas1679922114193 implements MigrationInterface {
             type: "date",
           },
           {
+            name: "valor",
+            type: "string",
+          },
+          {
             name: "recibo_id",
             type: "string",
           },

@@ -14,7 +14,7 @@ export default class CobrancasController {
       return response.json(cobrancas)
     } catch (error) {
       console.error(error)
-      return response.status(500)
+      return response.status(500).json()
     }
   }
   public async show(request: Request, response: Response): Promise<Response> {
@@ -28,7 +28,7 @@ export default class CobrancasController {
       }
     } catch (error) {
       console.error(error)
-      return response.status(500).json
+      return response.status(500).json()
     }
   }
 

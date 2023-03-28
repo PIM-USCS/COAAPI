@@ -1,25 +1,35 @@
-import { Request, Response } from "express";
-import CreateClienteService from "../services/CreateClienteService";
-import DeleteClienteService from "../services/DeleteClienteService";
-import ListClienteService from "../services/ListClienteService";
-import ShowClienteService from "../services/ShowClienteService";
-import UpdateClienteService from "../services/UpdateClienteService";
+import { Request, Response } from 'express'
+import CreateClienteService from '../services/CreateClienteService'
+import DeleteClienteService from '../services/DeleteClienteService'
+import ListClienteService from '../services/ListClienteService'
+import ShowClienteService from '../services/ShowClienteService'
+import UpdateClienteService from '../services/UpdateClienteService'
 
 export default class ClientesController {
   public async index(request: Request, response: Response): Promise<Response> {
-    const listClientes = new ListClienteService();
+    try {
+      const listClientes = new ListClienteService()
 
-    const clientes = await listClientes.execute();
+      const clientes = await listClientes.execute()
 
-    return response.json(clientes);
+      return response.json(clientes)
+    } catch (error) {
+      console.error(error)
+      return response.status(500).json()
+    }
   }
   public async show(request: Request, response: Response): Promise<Response> {
-    {
-      const { id } = request.params;
-      const showCliente = new ShowClienteService();
+    try {
+      {
+        const { id } = request.params
+        const showCliente = new ShowClienteService()
 
-      const cliente = await showCliente.execute({ id });
-      return response.json(cliente);
+        const cliente = await showCliente.execute({ id })
+        return response.json(cliente)
+      }
+    } catch (error) {
+      console.error(error)
+      return response.status(500).json()
     }
   }
   public async create(request: Request, response: Response): Promise<Response> {
@@ -39,8 +49,8 @@ export default class ClientesController {
         bairro,
         numero,
         complemento,
-      } = request.body;
-      const createCliente = new CreateClienteService();
+      } = request.body
+      const createCliente = new CreateClienteService()
 
       const cliente = await createCliente.execute({
         tipo_cliente,
@@ -57,62 +67,68 @@ export default class ClientesController {
         bairro,
         numero,
         complemento,
-      });
-      return response.json(cliente);
+      })
+      return response.json(cliente)
     } catch (error) {
-      console.error(error);
-      return response.status(500).json();
+      console.error(error)
+      return response.status(500).json()
     }
   }
   public async update(request: Request, response: Response): Promise<Response> {
-    const {
-      tipo_cliente,
-      regime,
-      cnpj,
-      ie,
-      cpf,
-      rg,
-      nome,
-      cep,
-      rua,
-      cidade,
-      uf,
-      bairro,
-      numero,
-      complemento,
-    } = request.body;
+    try {
+      const {
+        tipo_cliente,
+        regime,
+        cnpj,
+        ie,
+        cpf,
+        rg,
+        nome,
+        cep,
+        rua,
+        cidade,
+        uf,
+        bairro,
+        numero,
+        complemento,
+      } = request.body
 
-    const { id } = request.params;
+      const { id } = request.params
 
-    const updateCliente = new UpdateClienteService();
-    const cliente = await updateCliente.execute({
-      id,
-      tipo_cliente,
-      regime,
-      cnpj,
-      ie,
-      cpf,
-      rg,
-      nome,
-      cep,
-      rua,
-      cidade,
-      uf,
-      bairro,
-      numero,
-      complemento,
-    });
+      const updateCliente = new UpdateClienteService()
+      const cliente = await updateCliente.execute({
+        id,
+        tipo_cliente,
+        regime,
+        cnpj,
+        ie,
+        cpf,
+        rg,
+        nome,
+        cep,
+        rua,
+        cidade,
+        uf,
+        bairro,
+        numero,
+        complemento,
+      })
 
-    return response.json(cliente);
+      return response.json(cliente)
+    } catch (error) {
+      console.error(error)
+      return response.status(500).json()
+    }
   }
   public async delete(request: Request, response: Response): Promise<Response> {
     try {
-      const { id } = request.params;
-      const deleteCliente = new DeleteClienteService();
-      await deleteCliente.execute({ id });
+      const { id } = request.params
+      const deleteCliente = new DeleteClienteService()
+      await deleteCliente.execute({ id })
     } catch (error) {
-      console.error(error);
+      console.error(error)
+      return response.status(500).json()
     }
-    return response.json([]);
+    return response.json([])
   }
 }

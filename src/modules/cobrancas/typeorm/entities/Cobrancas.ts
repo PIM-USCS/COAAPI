@@ -23,6 +23,9 @@ export class Cobranca {
   valor: string;
 
   @Column()
+  status: string;
+
+  @Column()
   mimeType: string;
 
   @Column("blob")

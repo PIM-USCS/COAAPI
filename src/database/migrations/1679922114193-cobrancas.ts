@@ -30,6 +30,10 @@ export class cobrancas1679922114193 implements MigrationInterface {
             type: "string",
           },
           {
+            name: "status",
+            type: "string",
+          },
+          {
             name: "mimeType",
             type: "varchar",
           },

@@ -9,6 +9,7 @@ interface IRequest {
   mimeType: string;
   data: Buffer;
   valor: string;
+  status: string;
 }
 
 class CreateCobrancaService {
@@ -19,6 +20,7 @@ class CreateCobrancaService {
     mimeType,
     data,
     valor,
+    status,
   }: IRequest): Promise<Cobranca> {
     const cobrancaRepository = getCustomRepository(CobrancaRepository);
 
@@ -29,6 +31,7 @@ class CreateCobrancaService {
       data,
       recibo,
       valor,
+      status,
     });
 
     await cobrancaRepository.save(cobranca);

@@ -1,24 +1,34 @@
-import { Request, Response } from "express";
-import CreateCobrancaService from "../services/CreateCobrancaService";
-import DeleteCobrancasService from "../services/DeleteClienteService";
-import ListCobrancaService from "../services/ListCobrancaService";
-import ShowCobrancaService from "../services/ShowCobrancaService";
+import { Request, Response } from 'express'
+import CreateCobrancaService from '../services/CreateCobrancaService'
+import DeleteCobrancasService from '../services/DeleteCobrancaService'
+import ListCobrancaService from '../services/ListCobrancaService'
+import ShowCobrancaService from '../services/ShowCobrancaService'
 
 export default class CobrancasController {
   public async index(request: Request, response: Response): Promise<Response> {
-    const listCobrancas = new ListCobrancaService();
+    try {
+      const listCobrancas = new ListCobrancaService()
 
-    const cobrancas = await listCobrancas.execute();
+      const cobrancas = await listCobrancas.execute()
 
-    return response.json(cobrancas);
+      return response.json(cobrancas)
+    } catch (error) {
+      console.error(error)
+      return response.status(500)
+    }
   }
   public async show(request: Request, response: Response): Promise<Response> {
-    {
-      const { id } = request.params;
-      const showCobranca = new ShowCobrancaService();
+    try {
+      {
+        const { id } = request.params
+        const showCobranca = new ShowCobrancaService()
 
-      const cobranca = await showCobranca.execute({ id });
-      return response.json(cobranca);
+        const cobranca = await showCobranca.execute({ id })
+        return response.json(cobranca)
+      }
+    } catch (error) {
+      console.error(error)
+      return response.status(500).json
     }
   }
 
@@ -32,8 +42,8 @@ export default class CobrancasController {
         data,
         valor,
         status,
-      } = request.body;
-      const createCobranca = new CreateCobrancaService();
+      } = request.body
+      const createCobranca = new CreateCobrancaService()
 
       const cobranca = await createCobranca.execute({
         vencimento_cobranca,
@@ -43,22 +53,22 @@ export default class CobrancasController {
         data,
         valor,
         status,
-      });
-      return response.json(cobranca);
+      })
+      return response.json(cobranca)
     } catch (error) {
-      console.error(error);
-      return response.status(500).json();
+      console.error(error)
+      return response.status(500).json()
     }
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {
     try {
-      const { id } = request.params;
-      const deleteCobranca = new DeleteCobrancasService();
-      await deleteCobranca.execute({ id });
+      const { id } = request.params
+      const deleteCobranca = new DeleteCobrancasService()
+      await deleteCobranca.execute({ id })
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
-    return response.json([]);
+    return response.json([])
   }
 }

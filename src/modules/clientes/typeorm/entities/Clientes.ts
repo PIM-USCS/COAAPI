@@ -1,3 +1,4 @@
+import Empresa from "@modules/empresas/typeorm/entities/Empresa";
 import Regime from "../../../regime/typeorm/entities/Regime";
 import {
   Column,
@@ -5,6 +6,7 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
@@ -13,22 +15,6 @@ import {
 class Clientes {
   @PrimaryGeneratedColumn()
   id: string;
-
-  @Column()
-  tipo_cliente: string;
-
-  @ManyToOne(() => Regime, (regime) => regime.id)
-  @JoinColumn({ name: "regime" })
-  cliente: Regime;
-
-  @Column()
-  regime: string;
-
-  @Column()
-  cnpj: string;
-
-  @Column()
-  ie: string;
 
   @Column()
   cpf: string;
@@ -40,31 +26,22 @@ class Clientes {
   nome: string;
 
   @Column()
-  cep: string;
+  telefone: string;
 
   @Column()
-  rua: string;
+  email: string;
 
   @Column()
-  cidade: string;
-
-  @Column()
-  uf: string;
-
-  @Column()
-  bairro: string;
-
-  @Column()
-  numero: string;
-
-  @Column()
-  complemento: string;
+  usuario: string;
 
   @CreateDateColumn()
   created_at: Date;
 
   @UpdateDateColumn()
   update_at: Date;
+
+  @OneToMany(() => Empresa, (empresas) => empresas.cliente)
+  empresas: Empresa[];
 }
 
 export default Clientes;

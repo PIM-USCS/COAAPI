@@ -18,6 +18,14 @@ export class colaborador1680622897907 implements MigrationInterface {
             type: "varchar",
           },
           {
+            name: "email",
+            type: "varchar",
+          },
+          {
+            name: "senha",
+            type: "varchar",
+          },
+          {
             name: "created_at",
             type: "timestamp",
             default: "now()",

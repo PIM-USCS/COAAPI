@@ -13,26 +13,9 @@ export class clientes1679406711061 implements MigrationInterface {
             isGenerated: true,
             generationStrategy: "increment",
           },
-
           {
-            name: "tipo_cliente",
-            type: "varchar",
-          },
-
-          {
-            name: "regime",
-            type: "varchar",
-            isNullable: true,
-          },
-          {
-            name: "cnpj",
-            type: "varchar",
-            isNullable: true,
-          },
-          {
-            name: "ie",
-            type: "varchar",
-            isNullable: true,
+            name: "nome",
+            type: "string",
           },
           {
             name: "cpf",
@@ -45,57 +28,34 @@ export class clientes1679406711061 implements MigrationInterface {
             isNullable: true,
           },
           {
-            name: "nome",
-            type: "string",
-          },
-          {
-            name: "cep",
+            name: "telefone",
             type: "varchar",
           },
           {
-            name: "rua",
-            type: "string",
-          },
-          {
-            name: "cidade",
-            type: "string",
-          },
-          {
-            name: "uf",
-            type: "string",
-          },
-          {
-            name: "bairro",
-            type: "string",
-          },
-          {
-            name: "numero",
+            name: "email",
             type: "varchar",
           },
           {
-            name: "complemento",
-            type: "string",
-            isNullable: true,
+            name: "usuario",
+            type: "varchar",
           },
           {
             name: "created_at",
             type: "timestamp",
             default: "now()",
           },
-
           {
             name: "update_at",
             type: "timestamp",
             default: "now()",
           },
         ],
-
         foreignKeys: [
           {
-            name: "regime",
-            referencedTableName: "regime",
+            name: "usuario",
+            referencedTableName: "usuarios",
             referencedColumnNames: ["id"],
-            columnNames: ["regime"],
+            columnNames: ["usuario"],
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
           },

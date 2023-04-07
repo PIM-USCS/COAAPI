@@ -22,7 +22,7 @@ empresaRouter.post(
   celebrate({
     [Segments.BODY]: {
       tipo_cliente: Joi.string(),
-      regime: Joi.string(),
+      regimeID: Joi.string(),
       cnpj: Joi.string(),
       ie: Joi.string(),
       cpf: Joi.string(),
@@ -36,7 +36,7 @@ empresaRouter.post(
       numero: Joi.string(),
       complemento: Joi.string(),
       colaborador: Joi.string(),
-      cliente: Joi.string(),
+      clienteID: Joi.string(),
     },
   }),
   empresaController.create

@@ -1,54 +1,101 @@
-// import { Request, Response } from "express";
-// import CreateUsuarioService from "../services/CreateUsuarioService";
-// import ListUsuarioService from "../services/ListUsuarioService";
-// import ShowUsuarioService from "../services/ShowUsuarioService";
-// import ListColaboradorService from "../services/ListColaboradorService";
-// import ShowColaboradorService from "../services/ShowColaboradorService";
+import { Request, Response } from "express";
 
-// export default class ColaboradorController {
-//   public async index(request: Request, response: Response): Promise<Response> {
-//     try {
-//       const listColaborador = new ListColaboradorService();
+import ListColaboradorService from "../services/ListColaboradorService";
+import ShowColaboradorService from "../services/ShowColaboradorService";
 
-//       const colaborador = await listColaborador.execute();
+import CreateColaboradorService from "../services/CreateColaboradorService";
+import DeleteColaboradorService from "../services/DeleteColaboradorService";
 
-//       return response.json(colaborador);
-//     } catch (error) {
-//       console.error(error);
-//       return response.status(500).json();
-//     }
-//   }
-//   public async show(request: Request, response: Response): Promise<Response> {
-//     try {
-//       {
-//         const { id } = request.params;
-//         const showColaborador = new ShowColaboradorService();
+export default class ColaboradorController {
+  public async index(request: Request, response: Response): Promise<Response> {
+    try {
+      const listColaborador = new ListColaboradorService();
 
-//         const colaborador = await showColaborador.execute({ id });
-//         return response.json(colaborador);
-//       }
-//     } catch (error) {
-//       console.error(error);
-//       return response.status(500).json();
-//     }
-//   }
-//   public async create(request: Request, response: Response): Promise<Response> {
-//     try {
-//       const { nome, senha, avatar } = request.body;
-//       const createUsuario = new CreateUsuarioService();
+      const colaborador = await listColaborador.execute();
 
-//       const usuarios = await createUsuario.execute({
-//         nome,
-//         senha,
-//         avatar,
-//       });
-//       return response.json(usuarios);
-//     } catch (error) {
-//       console.error(error);
-//       return response.status(500).json();
-//     }
-//   }
-//   //   public async update(request: Request, response: Response): Promise<Response> {
-//   //   }
-//   //   public async delete(request: Request, response: Response): Promise<Response> {
-// }
+      return response.json(colaborador);
+    } catch (error) {
+      console.error(error);
+      return response.status(500).json();
+    }
+  }
+  public async show(request: Request, response: Response): Promise<Response> {
+    try {
+      {
+        const { id } = request.params;
+        const showColaborador = new ShowColaboradorService();
+
+        const colaborador = await showColaborador.execute({ id });
+        return response.json(colaborador);
+      }
+    } catch (error) {
+      console.error(error);
+      return response.status(500).json();
+    }
+  }
+  public async create(request: Request, response: Response): Promise<Response> {
+    try {
+      const { nome, senha, email } = request.body;
+      const createColaborador = new CreateColaboradorService();
+
+      const colaborador = await createColaborador.execute({
+        nome,
+        senha,
+        email,
+      });
+      return response.json(colaborador);
+    } catch (error) {
+      console.error(error);
+      return response.status(500).json();
+    }
+  }
+  //   public async update(request: Request, response: Response): Promise<Response> {
+  //     try {
+  //       const {
+  //        email,
+  //        senha,
+  //        nome,
+  //       } = request.body;
+
+  //       const { id } = request.params;
+
+  //       const updateEmpresa = new UpdateEmpresaService();
+  //       const empresa = await updateEmpresa.execute({
+  //         id,
+  //         tipo_cliente,
+  //         regime,
+  //         cnpj,
+  //         ie,
+  //         cpf,
+  //         rg,
+  //         nome,
+  //         cep,
+  //         rua,
+  //         cidade,
+  //         uf,
+  //         bairro,
+  //         numero,
+  //         complemento,
+  //         colaborador,
+  //         cliente,
+  //       });
+
+  //       return response.json(empresa);
+  //     } catch (error) {
+  //       console.error(error);
+  //       return response.status(500).json();
+  //     }
+  //   }
+
+  public async delete(request: Request, response: Response): Promise<Response> {
+    try {
+      const { id } = request.params;
+      const deleteColaborador = new DeleteColaboradorService();
+      await deleteColaborador.execute({ id });
+    } catch (error) {
+      console.error(error);
+      return response.status(500).json();
+    }
+    return response.json([]);
+  }
+}

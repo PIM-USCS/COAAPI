@@ -22,7 +22,7 @@ class Regime {
   @UpdateDateColumn()
   update_at: Date;
 
-  @OneToMany(() => Clientes, (clientes) => clientes.regime)
+  @OneToMany(() => Clientes, (clientes) => clientes.id)
   clientes: Clientes[];
 }
 

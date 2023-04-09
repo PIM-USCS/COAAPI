@@ -1,4 +1,5 @@
 import clientesRouter from "@modules/clientes/routes/clientes.routes";
+import colaboradorRouter from "@modules/colaborador/routes/colaborador.routes";
 import empresaRouter from "@modules/empresas/routes/empresas.routes";
 import regimeRouter from "@modules/regime/routes/regime.routes";
 import sessionsRouter from "@modules/usuarios/routes/sessions.routes";
@@ -13,6 +14,7 @@ routes.use("/usuarios", usuariosRouter);
 routes.use("/sessions", sessionsRouter);
 routes.use("/regimes", regimeRouter);
 routes.use("/empresas", empresaRouter);
+routes.use("/colaborador", colaboradorRouter);
 
 routes.get("/", (request, response) => {
   return response.json({ message: "Hello Dev!" });

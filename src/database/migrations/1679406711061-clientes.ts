@@ -35,10 +35,10 @@ export class clientes1679406711061 implements MigrationInterface {
             name: "email",
             type: "varchar",
           },
-          {
-            name: "usuario",
-            type: "varchar",
-          },
+          // {
+          //   name: "usuario",
+          //   type: "varchar",
+          // },
           {
             name: "created_at",
             type: "timestamp",
@@ -50,16 +50,16 @@ export class clientes1679406711061 implements MigrationInterface {
             default: "now()",
           },
         ],
-        foreignKeys: [
-          {
-            name: "usuario",
-            referencedTableName: "usuarios",
-            referencedColumnNames: ["id"],
-            columnNames: ["usuario"],
-            onDelete: "CASCADE",
-            onUpdate: "CASCADE",
-          },
-        ],
+        // foreignKeys: [
+        //   {
+        //     name: "usuario",
+        //     referencedTableName: "usuarios",
+        //     referencedColumnNames: ["id"],
+        //     columnNames: ["usuario"],
+        //     onDelete: "CASCADE",
+        //     onUpdate: "CASCADE",
+        //   },
+        // ],
       })
     );
   }

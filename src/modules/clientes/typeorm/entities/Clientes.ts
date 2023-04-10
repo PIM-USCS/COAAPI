@@ -31,8 +31,8 @@ class Clientes {
   @Column()
   email: string;
 
-  @Column()
-  usuario: string;
+  // @Column()
+  // usuario: string;
 
   @CreateDateColumn()
   created_at: Date;

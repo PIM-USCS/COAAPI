@@ -9,7 +9,6 @@ interface IRequest {
   nome: string;
   telefone: string;
   email: string;
-  usuario: string;
 }
 
 class CreateClienteService {
@@ -19,7 +18,6 @@ class CreateClienteService {
     nome,
     telefone,
     email,
-    usuario,
   }: IRequest): Promise<Clientes> {
     const clientesRepository = getCustomRepository(ClienteRepository);
 
@@ -29,7 +27,6 @@ class CreateClienteService {
       nome,
       telefone,
       email,
-      usuario,
     });
 
     await clientesRepository.save(cliente);

@@ -10,7 +10,6 @@ interface IRequest {
   nome: string;
   telefone: string;
   email: string;
-  usuario: string;
 }
 
 class UpdateClienteService {
@@ -21,7 +20,6 @@ class UpdateClienteService {
     nome,
     telefone,
     email,
-    usuario,
   }: IRequest): Promise<Clientes> {
     const clientesRepository = getCustomRepository(ClienteRepository);
 
@@ -36,7 +34,6 @@ class UpdateClienteService {
     clientes.nome = nome;
     clientes.telefone = telefone;
     clientes.email = email;
-    clientes.usuario = usuario;
 
     await clientesRepository.save(clientes);
     return clientes;

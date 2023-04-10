@@ -12,7 +12,7 @@ class DeleteEmpresaService {
     const empresas = await empresasRepository.findOne(id);
 
     if (!empresas) {
-      throw new Error("Cliente não encontrado.");
+      throw new Error("Empresa não encontrada.");
     }
 
     await empresasRepository.remove(empresas);

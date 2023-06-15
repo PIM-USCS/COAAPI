@@ -6,12 +6,13 @@ import UsuariosRepostiroy from "../typeorm/repositories/UsuariosRepository";
 
 interface IRequest {
   nome: string;
+  email: string;
   senha: string;
   avatar: string;
 }
 
 class CreateUsuarioService {
-  public async execute({ avatar, nome, senha }: IRequest): Promise<Usuario> {
+  public async execute({ avatar, nome, email,senha }: IRequest): Promise<Usuario> {
     const usuariosRepository = getCustomRepository(UsuariosRepostiroy);
     const usuarioExists = await usuariosRepository.findByNome(nome);
 

@@ -5,18 +5,15 @@ import Usuario from '../typeorm/entities/Usuario'
 import UsuariosRepostiroy from '../typeorm/repositories/UsuariosRepository'
 
 interface IRequest {
-  nome: string
+  email: string
   senha: string
 }
 
-// interface IResponse {
-//   usuario: Usuario;
-// }
 
 class CreateSessionsService {
-  public async execute({ nome, senha }: IRequest): Promise<Usuario> {
+  public async execute({ email, senha }: IRequest): Promise<Usuario> {
     const usuariosRepository = getCustomRepository(UsuariosRepostiroy)
-    const user = await usuariosRepository.findByNome(nome)
+    const user = await usuariosRepository.findByNome(email)
 
     if (!user) {
       throw new AppError('Usuário/senha esta incorreto!')

@@ -37,6 +37,7 @@ export default class UsuariosController {
 
       const usuarios = await createUsuario.execute({
         nome,
+        email,
         senha,
         avatar,
       })

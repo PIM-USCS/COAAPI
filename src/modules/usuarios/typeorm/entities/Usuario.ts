@@ -15,6 +15,9 @@ class Usuario {
   nome: string;
 
   @Column()
+  email: string;
+  
+  @Column()
   senha: string;
 
   @Column()

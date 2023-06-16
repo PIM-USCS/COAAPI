@@ -12,7 +12,12 @@ interface IRequest {
 }
 
 class CreateUsuarioService {
-  public async execute({ avatar, nome, email,senha }: IRequest): Promise<Usuario> {
+  public async execute({
+    avatar,
+    nome,
+    email,
+    senha,
+  }: IRequest): Promise<Usuario> {
     const usuariosRepository = getCustomRepository(UsuariosRepostiroy);
     const usuarioExists = await usuariosRepository.findByNome(nome);
 
@@ -24,6 +29,7 @@ class CreateUsuarioService {
 
     const usuario = usuariosRepository.create({
       nome,
+      email,
       senha: hashedSenha,
       avatar,
     });

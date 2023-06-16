@@ -4,7 +4,7 @@ import CreateSessionsService from "../services/CreateSessionsService";
 export default class SessionsController {
   public async create(request: Request, response: Response): Promise<Response> {
     try {
-      const { nome, senha } = request.body;
+      const { email, senha } = request.body;
 
       const createSession = new CreateSessionsService();
 
@@ -15,7 +15,7 @@ export default class SessionsController {
 
       return response.json(usuario);
     } catch (error) {
-      console.error(error);
+      console.log(error);
       return response.status(500).json();
     }
   }

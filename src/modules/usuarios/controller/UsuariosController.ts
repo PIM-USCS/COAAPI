@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import CreateUsuarioService from "../services/CreateUsuarioService";
 import ListUsuarioService from "../services/ListUsuarioService";
 import ShowUsuarioService from "../services/ShowUsuarioService";
+import UpdateUsuarioService from "../services/UpdateUsuarioService";
 
 export default class UsuariosController {
   public async index(request: Request, response: Response): Promise<Response> {
@@ -47,7 +48,22 @@ export default class UsuariosController {
       return response.status(500).json();
     }
   }
-  //   public async update(request: Request, response: Response): Promise<Response> {
-  //   }
+  public async update(request: Request, response: Response): Promise<Response> {
+    try {
+      const { nome } = request.body;
+      const { id } = request.params;
+
+      const updateUsuario = new UpdateUsuarioService();
+      const usuario = await updateUsuario.execute({
+        id,
+        nome,
+      });
+
+      return response.json(usuario);
+    } catch (error) {
+      console.error(error);
+      return response.status(500).json();
+    }
+  }
   //   public async delete(request: Request, response: Response): Promise<Response> {
 }

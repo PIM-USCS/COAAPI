@@ -43,31 +43,18 @@ usuariosRouter.patch(
   usuariosAvatarController.update
 );
 
-// clientesRouter.put(
-//   "/:id",
-//   celebrate({
-//     [Segments.BODY]: {
-//       tipo_cliente: Joi.string(),
-//       regime: Joi.string(),
-//       cnpj: Joi.string(),
-//       ie: Joi.string(),
-//       cpf: Joi.string(),
-//       rg: Joi.string(),
-//       nome: Joi.string(),
-//       cep: Joi.string(),
-//       rua: Joi.string(),
-//       cidade: Joi.string(),
-//       uf: Joi.string(),
-//       bairro: Joi.string(),
-//       numero: Joi.string(),
-//       complemento: Joi.string(),
-//     },
-//     [Segments.PARAMS]: {
-//       id: Joi.string().required(),
-//     },
-//   }),
-//   clientesController.update
-// );
+usuariosRouter.put(
+  "/:id",
+  celebrate({
+    [Segments.BODY]: {
+      nome: Joi.string(),
+    },
+    [Segments.PARAMS]: {
+      id: Joi.string().required(),
+    },
+  }),
+  usuariosController.update
+);
 
 // clientesRouter.delete(
 //   "/:id",

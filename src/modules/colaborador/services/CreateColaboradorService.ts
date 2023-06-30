@@ -14,7 +14,7 @@ interface IRequest {
 class CreateColaboradorService {
   public async execute({ email, nome, senha }: IRequest): Promise<Colaborador> {
     const colaboradorRepository = getCustomRepository(ColaboradorRepostiroy);
-    const colaboradorExists = await colaboradorRepository.findById(nome);
+    const colaboradorExists = await colaboradorRepository.findByEmail(email);
 
     if (colaboradorExists) {
       throw new AppError("Já existe um colaborador com este nome");

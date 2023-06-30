@@ -9,6 +9,13 @@ class ColaboradorRepostiroy extends Repository<Colaborador> {
     });
     return colaborador;
   }
+
+  public async findByEmail(email: string): Promise<Colaborador | undefined> {
+    const colaborador = await this.findOne({
+      where: { email },
+    });
+    return colaborador;
+  }
 }
 
 export default ColaboradorRepostiroy;

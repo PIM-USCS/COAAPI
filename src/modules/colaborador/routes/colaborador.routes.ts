@@ -7,11 +7,21 @@ const colaboradorController = new ColaboradorController();
 
 colaboradorRouter.get("/", colaboradorController.index);
 
+// colaboradorRouter.get(
+//   "/:id",
+//   celebrate({
+//     [Segments.PARAMS]: {
+//       id: Joi.string().required(),
+//     },
+//   }),
+//   colaboradorController.show
+// );
+
 colaboradorRouter.get(
-  "/:id",
+  "/:email",
   celebrate({
     [Segments.PARAMS]: {
-      id: Joi.string().required(),
+      email: Joi.string().required(),
     },
   }),
   colaboradorController.show

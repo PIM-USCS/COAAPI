@@ -17,7 +17,7 @@ export class usuarios1679491297681 implements MigrationInterface {
             type: "varchar",
             isUnique: true,
           },
-            {
+          {
             name: "email",
             type: "varchar",
             isUnique: true,
@@ -30,6 +30,10 @@ export class usuarios1679491297681 implements MigrationInterface {
             name: "avatar",
             type: "varchar",
             isNullable: true,
+          },
+          {
+            name: "tipo_usuario",
+            type: "varchar",
           },
           {
             name: "created_at",

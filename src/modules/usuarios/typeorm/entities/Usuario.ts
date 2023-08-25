@@ -16,9 +16,12 @@ class Usuario {
 
   @Column()
   email: string;
-  
+
   @Column()
   senha: string;
+
+  @Column()
+  tipo_usuario: string;
 
   @Column()
   avatar: string;

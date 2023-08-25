@@ -33,7 +33,7 @@ export default class UsuariosController {
   }
   public async create(request: Request, response: Response): Promise<Response> {
     try {
-      const { nome, email, senha, avatar } = request.body;
+      const { nome, email, senha, avatar, tipo_usuario } = request.body;
       const createUsuario = new CreateUsuarioService();
 
       const usuarios = await createUsuario.execute({
@@ -41,6 +41,7 @@ export default class UsuariosController {
         email,
         senha,
         avatar,
+        tipo_usuario,
       });
       return response.json(usuarios);
     } catch (error) {

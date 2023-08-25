@@ -31,6 +31,7 @@ usuariosRouter.post(
       nome: Joi.string().required(),
       email: Joi.string().required(),
       senha: Joi.string().required(),
+      tipo_usuario: Joi.string().required(),
       avatar: Joi.string(),
     },
   }),

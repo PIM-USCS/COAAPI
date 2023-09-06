@@ -18,13 +18,6 @@ class Empresa {
   @Column()
   tipo_cliente: string;
 
-  // @ManyToOne(() => Regime, (regime) => regime.id)
-  // @JoinColumn({ name: "regime" })
-  // regime: Regime;
-
-  // @Column()
-  // regimeID: string;
-
   @Column()
   cnpj: string;
 
@@ -61,14 +54,11 @@ class Empresa {
   complemento: string;
 
   @Column()
-  colaborador: string;
+  id_cliente: string;
 
-  // @ManyToOne(() => Clientes, (cliente) => cliente.id)
-  // @JoinColumn({ name: "clientesId" })
-  // cliente: Clientes;
-
-  // @Column()
-  // clientesID: string;
+  @ManyToOne(() => Clientes, (cliente) => cliente.id)
+  @JoinColumn({ name: "id_cliente" })
+  cliente: Clientes;
 
   @CreateDateColumn()
   created_at: Date;

@@ -13,12 +13,10 @@ export class empresa1680622769181 implements MigrationInterface {
             isGenerated: true,
             generationStrategy: "increment",
           },
-
           {
             name: "tipo_cliente",
             type: "varchar",
           },
-
           {
             name: "regime",
             type: "varchar",
@@ -78,14 +76,8 @@ export class empresa1680622769181 implements MigrationInterface {
             isNullable: true,
           },
           {
-            name: "colaborador",
-            type: "string",
-            isNullable: true,
-          },
-          {
-            name: "cliente",
-            type: "string",
-            isNullable: true,
+            name: "id_cliente",
+            type: "varchar",
           },
           {
             name: "created_at",
@@ -102,26 +94,10 @@ export class empresa1680622769181 implements MigrationInterface {
 
         foreignKeys: [
           {
-            name: "regime",
-            referencedTableName: "regime",
-            referencedColumnNames: ["id"],
-            columnNames: ["regime"],
-            onDelete: "CASCADE",
-            onUpdate: "CASCADE",
-          },
-          {
-            name: "colaborador",
-            referencedTableName: "colaborador",
-            referencedColumnNames: ["id"],
-            columnNames: ["regime"],
-            onDelete: "CASCADE",
-            onUpdate: "CASCADE",
-          },
-          {
-            name: "cliente",
+            name: "id_cliente",
             referencedTableName: "clientes",
             referencedColumnNames: ["id"],
-            columnNames: ["cliente"],
+            columnNames: ["id_cliente"],
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
           },

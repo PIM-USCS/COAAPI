@@ -36,7 +36,6 @@ export default class EmpresaController {
     try {
       const {
         tipo_cliente,
-        regime,
         cnpj,
         ie,
         cpf,
@@ -49,14 +48,12 @@ export default class EmpresaController {
         bairro,
         numero,
         complemento,
-        colaborador,
-        cliente,
+        id_cliente,
       } = request.body;
       const createEmpresa = new CreateEmpresaService();
 
       const empresa = await createEmpresa.execute({
         tipo_cliente,
-        regime,
         cnpj,
         ie,
         cpf,
@@ -69,8 +66,7 @@ export default class EmpresaController {
         bairro,
         numero,
         complemento,
-        colaborador,
-        cliente,
+        id_cliente,
       });
       return response.json(empresa);
     } catch (error) {
@@ -82,7 +78,7 @@ export default class EmpresaController {
     try {
       const {
         tipo_cliente,
-        regime,
+
         cnpj,
         ie,
         cpf,
@@ -95,7 +91,6 @@ export default class EmpresaController {
         bairro,
         numero,
         complemento,
-        colaborador,
         cliente,
       } = request.body;
 
@@ -105,7 +100,7 @@ export default class EmpresaController {
       const empresa = await updateEmpresa.execute({
         id,
         tipo_cliente,
-        regime,
+
         cnpj,
         ie,
         cpf,
@@ -118,7 +113,7 @@ export default class EmpresaController {
         bairro,
         numero,
         complemento,
-        colaborador,
+
         cliente,
       });
 

@@ -6,7 +6,6 @@ import { EmpresaRepository } from "../typeorm/repositories/EmpresasRepository";
 interface IRequest {
   id: string;
   tipo_cliente: string;
-  regime: string;
   cnpj: string;
   ie: string;
   cpf: string;
@@ -19,7 +18,6 @@ interface IRequest {
   bairro: string;
   numero: string;
   complemento: string;
-  colaborador: string;
   cliente: string;
 }
 
@@ -27,7 +25,6 @@ class UpdateEmpresaService {
   public async execute({
     id,
     tipo_cliente,
-    regime,
     cnpj,
     ie,
     cpf,
@@ -40,7 +37,6 @@ class UpdateEmpresaService {
     bairro,
     numero,
     complemento,
-    colaborador,
     cliente,
   }: IRequest): Promise<Empresa> {
     const empresasRepository = getCustomRepository(EmpresaRepository);
@@ -52,7 +48,6 @@ class UpdateEmpresaService {
     }
 
     empresas.tipo_cliente = tipo_cliente;
-    empresas.regime = regime;
     empresas.cnpj = cnpj;
     empresas.ie = ie;
     empresas.cpf = cpf;
@@ -65,8 +60,7 @@ class UpdateEmpresaService {
     empresas.bairro = bairro;
     empresas.numero = numero;
     empresas.complemento = complemento;
-    empresas.colaborador = colaborador;
-    empresas.cliente = cliente;
+    // empresas.cliente = cliente;
 
     await empresasRepository.save(empresas);
     return empresas;

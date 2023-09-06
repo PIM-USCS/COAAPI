@@ -22,7 +22,6 @@ empresaRouter.post(
   celebrate({
     [Segments.BODY]: {
       tipo_cliente: Joi.string(),
-      regimeID: Joi.string(),
       cnpj: Joi.string(),
       ie: Joi.string(),
       cpf: Joi.string(),
@@ -35,8 +34,7 @@ empresaRouter.post(
       bairro: Joi.string(),
       numero: Joi.string(),
       complemento: Joi.string(),
-      colaborador: Joi.string(),
-      clienteID: Joi.string(),
+      id_cliente: Joi.string(),
     },
   }),
   empresaController.create
@@ -47,7 +45,6 @@ empresaRouter.put(
   celebrate({
     [Segments.BODY]: {
       tipo_cliente: Joi.string(),
-      regime: Joi.string(),
       cnpj: Joi.string(),
       ie: Joi.string(),
       cpf: Joi.string(),
@@ -60,7 +57,6 @@ empresaRouter.put(
       bairro: Joi.string(),
       numero: Joi.string(),
       complemento: Joi.string(),
-      colaborador: Joi.string(),
       cliente: Joi.string(),
     },
     [Segments.PARAMS]: {

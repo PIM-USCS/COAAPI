@@ -5,7 +5,6 @@ import { EmpresaRepository } from "../typeorm/repositories/EmpresasRepository";
 
 interface IRequest {
   tipo_cliente: string;
-  regime: string;
   cnpj: string;
   ie: string;
   cpf: string;
@@ -18,14 +17,12 @@ interface IRequest {
   bairro: string;
   numero: string;
   complemento: string;
-  colaborador: string;
-  cliente: string;
+  id_cliente: string;
 }
 
 class CreateEmpresaService {
   public async execute({
     tipo_cliente,
-    regime,
     cnpj,
     ie,
     cpf,
@@ -38,8 +35,7 @@ class CreateEmpresaService {
     bairro,
     numero,
     complemento,
-    colaborador,
-    cliente,
+    id_cliente,
   }: IRequest): Promise<Empresa> {
     const empresasRepository = getCustomRepository(EmpresaRepository);
     const empresaExistCNPJ = await empresasRepository.findByCNPJ(cnpj);
@@ -50,7 +46,6 @@ class CreateEmpresaService {
 
     const empresa = await empresasRepository.create({
       tipo_cliente,
-      regime,
       cnpj,
       ie,
       cpf,
@@ -63,8 +58,7 @@ class CreateEmpresaService {
       bairro,
       numero,
       complemento,
-      colaborador,
-      cliente,
+      id_cliente,
     });
 
     await empresasRepository.save(empresa);

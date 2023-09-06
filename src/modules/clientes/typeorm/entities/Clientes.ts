@@ -31,17 +31,11 @@ class Clientes {
   @Column()
   email: string;
 
-  // @Column()
-  // usuario: string;
-
   @CreateDateColumn()
   created_at: Date;
 
   @UpdateDateColumn()
   update_at: Date;
-
-  @OneToMany(() => Empresa, (empresas) => empresas.id)
-  empresas: Empresa[];
 }
 
 export default Clientes;

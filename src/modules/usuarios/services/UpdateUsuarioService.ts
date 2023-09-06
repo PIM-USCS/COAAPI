@@ -6,11 +6,11 @@ import { compare } from "bcryptjs";
 
 interface IRequest {
   id: string;
-  nome: string;
+  email: string;
 }
 
 class UpdateUsuarioService {
-  public async execute({ nome, id }: IRequest): Promise<Usuario> {
+  public async execute({ email, id }: IRequest): Promise<Usuario> {
     const usuariosRepository = getCustomRepository(UsuariosRepostiroy);
 
     const usuarios = await usuariosRepository.findOne(id);
@@ -19,7 +19,7 @@ class UpdateUsuarioService {
       throw new AppError("Cliente não encontrado.");
     }
 
-    usuarios.nome = nome;
+    usuarios.email = email;
 
     await usuariosRepository.save(usuarios);
     return usuarios;

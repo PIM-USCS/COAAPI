@@ -33,11 +33,10 @@ export default class UsuariosController {
   }
   public async create(request: Request, response: Response): Promise<Response> {
     try {
-      const { nome, email, senha, avatar, tipo_usuario } = request.body;
+      const { email, senha, avatar, tipo_usuario } = request.body;
       const createUsuario = new CreateUsuarioService();
 
       const usuarios = await createUsuario.execute({
-        nome,
         email,
         senha,
         avatar,
@@ -51,13 +50,13 @@ export default class UsuariosController {
   }
   public async update(request: Request, response: Response): Promise<Response> {
     try {
-      const { nome } = request.body;
+      const { email } = request.body;
       const { id } = request.params;
 
       const updateUsuario = new UpdateUsuarioService();
       const usuario = await updateUsuario.execute({
         id,
-        nome,
+        email,
       });
 
       return response.json(usuario);

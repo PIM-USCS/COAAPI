@@ -12,9 +12,6 @@ class Usuario {
   id: string;
 
   @Column()
-  nome: string;
-
-  @Column()
   email: string;
 
   @Column()

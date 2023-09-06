@@ -9,7 +9,7 @@ interface IRequest {
   telefone: string;
 }
 
-class UpdateUsuarioService {
+class UpdateColaboradorService {
   public async execute({ nome, telefone, id }: IRequest): Promise<Colaborador> {
     const colaboradorRepository = getCustomRepository(ColaboradorRepostiroy);
 
@@ -27,4 +27,4 @@ class UpdateUsuarioService {
   }
 }
 
-export default UpdateUsuarioService;
+export default UpdateColaboradorService;

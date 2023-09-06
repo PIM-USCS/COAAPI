@@ -13,11 +13,6 @@ export class usuarios1679491297681 implements MigrationInterface {
             generationStrategy: "increment",
           },
           {
-            name: "nome",
-            type: "varchar",
-            isUnique: true,
-          },
-          {
             name: "email",
             type: "varchar",
             isUnique: true,

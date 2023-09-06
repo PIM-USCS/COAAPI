@@ -28,7 +28,6 @@ usuariosRouter.post(
   "/",
   celebrate({
     [Segments.BODY]: {
-      nome: Joi.string().required(),
       email: Joi.string().required(),
       senha: Joi.string().required(),
       tipo_usuario: Joi.string().required(),
@@ -48,7 +47,7 @@ usuariosRouter.put(
   "/:id",
   celebrate({
     [Segments.BODY]: {
-      nome: Joi.string(),
+      email: Joi.string(),
     },
     [Segments.PARAMS]: {
       id: Joi.string().required(),

@@ -5,7 +5,6 @@ import Usuario from "../typeorm/entities/Usuario";
 import UsuariosRepostiroy from "../typeorm/repositories/UsuariosRepository";
 
 interface IRequest {
-  nome: string;
   email: string;
   senha: string;
   tipo_usuario: string;
@@ -15,22 +14,20 @@ interface IRequest {
 class CreateUsuarioService {
   public async execute({
     avatar,
-    nome,
     email,
     senha,
     tipo_usuario,
   }: IRequest): Promise<Usuario> {
     const usuariosRepository = getCustomRepository(UsuariosRepostiroy);
-    const usuarioExists = await usuariosRepository.findByNome(nome);
+    const usuarioExists = await usuariosRepository.findByEmail(email);
 
     if (usuarioExists) {
-      throw new AppError("Já existe um usuario com este nome");
+      throw new AppError("Já existe um usuario com este email");
     }
 
     const hashedSenha = await hash(senha, 8);
 
     const usuario = usuariosRepository.create({
-      nome,
       tipo_usuario,
       email,
       senha: hashedSenha,

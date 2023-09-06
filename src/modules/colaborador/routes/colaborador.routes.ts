@@ -18,10 +18,10 @@ colaboradorRouter.get("/", colaboradorController.index);
 // );
 
 colaboradorRouter.get(
-  "/:email",
+  "/:nome",
   celebrate({
     [Segments.PARAMS]: {
-      email: Joi.string().required(),
+      nome: Joi.string().required(),
     },
   }),
   colaboradorController.show
@@ -32,8 +32,7 @@ colaboradorRouter.post(
   celebrate({
     [Segments.BODY]: {
       nome: Joi.string(),
-      senha: Joi.string(),
-      email: Joi.string(),
+      telefone: Joi.string(),
     },
   }),
   colaboradorController.create

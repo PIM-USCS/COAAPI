@@ -18,11 +18,7 @@ export class colaborador1680622897907 implements MigrationInterface {
             type: "varchar",
           },
           {
-            name: "email",
-            type: "varchar",
-          },
-          {
-            name: "senha",
+            name: "telefone",
             type: "varchar",
           },
           {

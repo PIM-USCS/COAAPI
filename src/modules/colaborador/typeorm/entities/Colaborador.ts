@@ -15,10 +15,7 @@ class Colaborador {
   nome: string;
 
   @Column()
-  email: string;
-
-  @Column()
-  senha: string;
+  telefone: string
 
   @CreateDateColumn()
   created_at: Date;

@@ -5,7 +5,6 @@ import ShowColaboradorService from "../services/ShowColaboradorService";
 
 import CreateColaboradorService from "../services/CreateColaboradorService";
 import DeleteColaboradorService from "../services/DeleteColaboradorService";
-import ShowColaboradorByEmailService from "../services/ShowColaboradorByEmailService";
 
 export default class ColaboradorController {
   public async index(request: Request, response: Response): Promise<Response> {
@@ -38,10 +37,10 @@ export default class ColaboradorController {
   public async show(request: Request, response: Response): Promise<Response> {
     try {
       {
-        const { email } = request.params;
-        const showColaborador = new ShowColaboradorByEmailService();
+        const { nome } = request.params;
+        const showColaborador = new ShowColaboradorService();
 
-        const colaborador = await showColaborador.execute({ email });
+        const colaborador = await showColaborador.execute({ nome });
         return response.json(colaborador);
       }
     } catch (error) {
@@ -52,13 +51,12 @@ export default class ColaboradorController {
 
   public async create(request: Request, response: Response): Promise<Response> {
     try {
-      const { nome, senha, email } = request.body;
+      const { nome, telefone } = request.body;
       const createColaborador = new CreateColaboradorService();
 
       const colaborador = await createColaborador.execute({
         nome,
-        senha,
-        email,
+        telefone,
       });
       return response.json(colaborador);
     } catch (error) {

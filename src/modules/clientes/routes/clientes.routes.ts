@@ -18,7 +18,7 @@ clientesRouter.get(
 );
 
 clientesRouter.post(
-  "/",
+  "/:id_empresa",
   celebrate({
     [Segments.BODY]: {
       cpf: Joi.string(),
@@ -27,6 +27,9 @@ clientesRouter.post(
       telefone: Joi.string(),
       email: Joi.string(),
       usuario: Joi.string(),
+    },
+    [Segments.PARAMS]: {
+      id_empresa: Joi.string(),
     },
   }),
   clientesController.create

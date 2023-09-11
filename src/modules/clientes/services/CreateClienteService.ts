@@ -1,4 +1,3 @@
-import AppError from "@shared/errors/AppError";
 import { getCustomRepository } from "typeorm";
 import Clientes from "../typeorm/entities/Clientes";
 import { ClienteRepository } from "../typeorm/repositories/ClienteRepository";
@@ -9,6 +8,7 @@ interface IRequest {
   nome: string;
   telefone: string;
   email: string;
+  id_empresa: string;
 }
 
 class CreateClienteService {
@@ -18,6 +18,7 @@ class CreateClienteService {
     nome,
     telefone,
     email,
+    id_empresa,
   }: IRequest): Promise<Clientes> {
     const clientesRepository = getCustomRepository(ClienteRepository);
 
@@ -27,6 +28,7 @@ class CreateClienteService {
       nome,
       telefone,
       email,
+      id_empresa,
     });
 
     await clientesRepository.save(cliente);

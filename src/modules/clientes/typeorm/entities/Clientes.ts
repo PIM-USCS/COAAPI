@@ -31,6 +31,13 @@ class Clientes {
   @Column()
   email: string;
 
+  @Column()
+  id_empresa: string;
+
+  @ManyToOne(() => Empresa, (empresa) => empresa.id)
+  @JoinColumn({ name: "id_empresa" })
+  empresa: Empresa;
+
   @CreateDateColumn()
   created_at: Date;
 

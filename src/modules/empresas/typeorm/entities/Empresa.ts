@@ -1,5 +1,4 @@
 import Clientes from "../../../clientes/typeorm/entities/Clientes";
-import Regime from "../../../regime/typeorm/entities/Regime";
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -52,13 +51,6 @@ class Empresa {
 
   @Column()
   complemento: string;
-
-  @Column()
-  id_cliente: string;
-
-  @ManyToOne(() => Clientes, (cliente) => cliente.id)
-  @JoinColumn({ name: "id_cliente" })
-  cliente: Clientes;
 
   @CreateDateColumn()
   created_at: Date;

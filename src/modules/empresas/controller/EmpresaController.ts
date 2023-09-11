@@ -48,8 +48,9 @@ export default class EmpresaController {
         bairro,
         numero,
         complemento,
-        id_cliente,
       } = request.body;
+
+      const { id_cliente } = request.params;
       const createEmpresa = new CreateEmpresaService();
 
       const empresa = await createEmpresa.execute({

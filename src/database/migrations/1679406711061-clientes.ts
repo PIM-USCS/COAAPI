@@ -32,6 +32,14 @@ export class clientes1679406711061 implements MigrationInterface {
             type: "varchar",
           },
           {
+            name: "email",
+            type: "varchar",
+          },
+          {
+            name: "id_empresa",
+            type: "varchar",
+          },
+          {
             name: "created_at",
             type: "timestamp",
             default: "now()",
@@ -40,6 +48,16 @@ export class clientes1679406711061 implements MigrationInterface {
             name: "update_at",
             type: "timestamp",
             default: "now()",
+          },
+        ],
+        foreignKeys: [
+          {
+            name: "id_empresa",
+            referencedTableName: "empresas",
+            referencedColumnNames: ["id"],
+            columnNames: ["id_empresa"],
+            onDelete: "CASCADE",
+            onUpdate: "CASCADE",
           },
         ],
       })

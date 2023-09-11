@@ -21,6 +21,7 @@ empresaRouter.post(
   "/",
   celebrate({
     [Segments.BODY]: {
+      id_cliente: Joi.string(),
       tipo_cliente: Joi.string(),
       cnpj: Joi.string(),
       ie: Joi.string(),
@@ -34,9 +35,9 @@ empresaRouter.post(
       bairro: Joi.string(),
       numero: Joi.string(),
       complemento: Joi.string(),
-      id_cliente: Joi.string(),
     },
   }),
+
   empresaController.create
 );
 

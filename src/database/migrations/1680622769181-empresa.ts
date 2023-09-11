@@ -76,10 +76,6 @@ export class empresa1680622769181 implements MigrationInterface {
             isNullable: true,
           },
           {
-            name: "id_cliente",
-            type: "varchar",
-          },
-          {
             name: "created_at",
             type: "timestamp",
             default: "now()",
@@ -89,17 +85,6 @@ export class empresa1680622769181 implements MigrationInterface {
             name: "update_at",
             type: "timestamp",
             default: "now()",
-          },
-        ],
-
-        foreignKeys: [
-          {
-            name: "id_cliente",
-            referencedTableName: "clientes",
-            referencedColumnNames: ["id"],
-            columnNames: ["id_cliente"],
-            onDelete: "CASCADE",
-            onUpdate: "CASCADE",
           },
         ],
       })

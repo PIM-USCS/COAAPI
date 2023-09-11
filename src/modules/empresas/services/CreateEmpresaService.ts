@@ -17,7 +17,6 @@ interface IRequest {
   bairro: string;
   numero: string;
   complemento: string;
-  id_cliente: string;
 }
 
 class CreateEmpresaService {
@@ -35,7 +34,6 @@ class CreateEmpresaService {
     bairro,
     numero,
     complemento,
-    id_cliente,
   }: IRequest): Promise<Empresa> {
     const empresasRepository = getCustomRepository(EmpresaRepository);
     const empresaExistCNPJ = await empresasRepository.findByCNPJ(cnpj);
@@ -58,7 +56,6 @@ class CreateEmpresaService {
       bairro,
       numero,
       complemento,
-      id_cliente,
     });
 
     await empresasRepository.save(empresa);

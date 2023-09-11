@@ -35,6 +35,8 @@ export default class ClientesController {
   public async create(request: Request, response: Response): Promise<Response> {
     try {
       const { cpf, rg, nome, telefone, email, usuario } = request.body;
+
+      const { id_empresa } = request.params;
       const createCliente = new CreateClienteService();
 
       const cliente = await createCliente.execute({
@@ -43,6 +45,7 @@ export default class ClientesController {
         nome,
         telefone,
         email,
+        id_empresa,
       });
       return response.json(cliente);
     } catch (error) {

@@ -8,10 +8,10 @@ const clientesController = new ClientesController();
 clientesRouter.get("/", clientesController.index);
 
 clientesRouter.get(
-  "/:id",
+  "/:id_empresa",
   celebrate({
     [Segments.PARAMS]: {
-      id: Joi.string().required(),
+      id_empresa: Joi.string().required(),
     },
   }),
   clientesController.show
@@ -36,7 +36,7 @@ clientesRouter.post(
 );
 
 clientesRouter.put(
-  "/:id",
+  "/:id_empresa",
   celebrate({
     [Segments.BODY]: {
       cpf: Joi.string(),
@@ -47,7 +47,7 @@ clientesRouter.put(
       usuario: Joi.string(),
     },
     [Segments.PARAMS]: {
-      id: Joi.string().required(),
+      id_empresa: Joi.string().required(),
     },
   }),
   clientesController.update

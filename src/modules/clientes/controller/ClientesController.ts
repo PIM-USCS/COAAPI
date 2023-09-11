@@ -21,10 +21,10 @@ export default class ClientesController {
   public async show(request: Request, response: Response): Promise<Response> {
     try {
       {
-        const { id } = request.params;
+        const { id_empresa } = request.params;
         const showCliente = new ShowClienteService();
 
-        const cliente = await showCliente.execute({ id });
+        const cliente = await showCliente.execute({ id_empresa });
         return response.json(cliente);
       }
     } catch (error) {

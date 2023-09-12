@@ -32,6 +32,7 @@ usuariosRouter.post(
       senha: Joi.string().required(),
       tipo_usuario: Joi.string().required(),
       avatar: Joi.string(),
+      id_empresa: Joi.string().required(),
     },
   }),
   usuariosController.create

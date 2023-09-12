@@ -1,9 +1,12 @@
+import Empresa from "../../../empresas/typeorm/entities/Empresa";
 import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from "typeorm";
 
 @Entity("usuarios")
@@ -22,6 +25,13 @@ class Usuario {
 
   @Column()
   avatar: string;
+
+  @Column()
+  id_empresa: string;
+
+  @ManyToOne(() => Empresa, (empresa) => empresa.id)
+  @JoinColumn({ name: "id_empresa" })
+  empresa: Empresa;
 
   @CreateDateColumn()
   created_at: Date;

@@ -1,3 +1,4 @@
+import Colaborador from "../../../colaborador/typeorm/entities/Colaborador";
 import Empresa from "../../../empresas/typeorm/entities/Empresa";
 import {
   Entity,
@@ -29,9 +30,16 @@ class Usuario {
   @Column()
   id_empresa: string;
 
+  @Column()
+  id_colaborador: string;
+
   @ManyToOne(() => Empresa, (empresa) => empresa.id)
   @JoinColumn({ name: "id_empresa" })
   empresa: Empresa;
+
+  @ManyToOne(() => Colaborador, (colaborador) => colaborador.id)
+  @JoinColumn({ name: "id_colaborador" })
+  colaborador: Colaborador;
 
   @CreateDateColumn()
   created_at: Date;

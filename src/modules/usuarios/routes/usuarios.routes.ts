@@ -32,7 +32,8 @@ usuariosRouter.post(
       senha: Joi.string().required(),
       tipo_usuario: Joi.string().required(),
       avatar: Joi.string(),
-      id_empresa: Joi.string().required(),
+      id_empresa: Joi.string(),
+      id_colaborador: Joi.string(),
     },
   }),
   usuariosController.create
@@ -56,15 +57,5 @@ usuariosRouter.put(
   }),
   usuariosController.update
 );
-
-// clientesRouter.delete(
-//   "/:id",
-//   celebrate({
-//     [Segments.PARAMS]: {
-//       id: Joi.string().required(),
-//     },
-//   }),
-//   clientesController.delete
-// );
 
 export default usuariosRouter;

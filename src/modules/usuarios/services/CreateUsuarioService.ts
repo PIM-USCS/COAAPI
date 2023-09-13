@@ -10,6 +10,7 @@ interface IRequest {
   tipo_usuario: string;
   avatar: string;
   id_empresa: string;
+  id_colaborador: string;
 }
 
 class CreateUsuarioService {
@@ -19,6 +20,7 @@ class CreateUsuarioService {
     senha,
     tipo_usuario,
     id_empresa,
+    id_colaborador,
   }: IRequest): Promise<Usuario> {
     const usuariosRepository = getCustomRepository(UsuariosRepostiroy);
     const usuarioExists = await usuariosRepository.findByEmail(email);
@@ -31,6 +33,7 @@ class CreateUsuarioService {
 
     const usuario = usuariosRepository.create({
       id_empresa,
+      id_colaborador,
       tipo_usuario,
       email,
       senha: hashedSenha,

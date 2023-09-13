@@ -33,6 +33,12 @@ export class usuarios1679491297681 implements MigrationInterface {
           {
             name: "id_empresa",
             type: "varchar",
+            isNullable: true,
+          },
+          {
+            name: "id_colaborador",
+            type: "varchar",
+            isNullable: true,
           },
           {
             name: "created_at",
@@ -53,6 +59,14 @@ export class usuarios1679491297681 implements MigrationInterface {
             referencedTableName: "empresas",
             referencedColumnNames: ["id"],
             columnNames: ["id_empresa"],
+            onDelete: "CASCADE",
+            onUpdate: "CASCADE",
+          },
+          {
+            name: "id_colaborador",
+            referencedTableName: "colaborador",
+            referencedColumnNames: ["id"],
+            columnNames: ["id_colaborador"],
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
           },

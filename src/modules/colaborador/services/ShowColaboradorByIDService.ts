@@ -4,14 +4,14 @@ import Colaborador from "../typeorm/entities/Colaborador";
 import ColaboradorRepostiroy from "../typeorm/repositories/ColaboradorRepository";
 
 interface IRequest {
-  nome: string;
+  id: string;
 }
 
-class ShowColaboradorService {
-  public async execute({ nome }: IRequest): Promise<Colaborador> {
+class ShowColaboradorByIDService {
+  public async execute({ id }: IRequest): Promise<Colaborador> {
     const colaboradorRepository = getCustomRepository(ColaboradorRepostiroy);
 
-    const colaborador = await colaboradorRepository.findOne(nome);
+    const colaborador = await colaboradorRepository.findById(id);
 
     if (!colaborador) {
       throw new AppError("Colaborador não encontrado");
@@ -19,4 +19,4 @@ class ShowColaboradorService {
     return colaborador;
   }
 }
-export default ShowColaboradorService;
+export default ShowColaboradorByIDService;

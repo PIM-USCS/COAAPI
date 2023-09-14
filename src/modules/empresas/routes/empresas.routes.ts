@@ -35,6 +35,7 @@ empresaRouter.post(
       bairro: Joi.string(),
       numero: Joi.string(),
       complemento: Joi.string(),
+      id_colaborador: Joi.string(),
     },
   }),
 

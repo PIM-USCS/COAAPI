@@ -1,4 +1,5 @@
-import Clientes from "../../../clientes/typeorm/entities/Clientes";
+import Colaborador from "../../../colaborador/typeorm/entities/Colaborador";
+
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -51,6 +52,13 @@ class Empresa {
 
   @Column()
   complemento: string;
+
+  @Column()
+  id_colaborador: string;
+
+  @ManyToOne(() => Colaborador, (colaborador) => colaborador.id)
+  @JoinColumn({ name: "id_colaborador" })
+  colaborador: Colaborador;
 
   @CreateDateColumn()
   created_at: Date;

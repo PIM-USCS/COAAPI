@@ -1,11 +1,12 @@
 import { Request, Response } from "express";
 
 import ListColaboradorService from "../services/ListColaboradorService";
-import ShowColaboradorService from "../services/ShowColaboradorService";
+import ShowColaboradorByNameService from "../services/ShowColaboradorByNameService";
 
 import CreateColaboradorService from "../services/CreateColaboradorService";
 import DeleteColaboradorService from "../services/DeleteColaboradorService";
 import UpdateColaboradorService from "../services/UpdateColaboradorService";
+import ShowColaboradorByIDService from "../services/ShowColaboradorByIDService";
 
 export default class ColaboradorController {
   public async index(request: Request, response: Response): Promise<Response> {
@@ -25,9 +26,27 @@ export default class ColaboradorController {
     try {
       {
         const { nome } = request.params;
-        const showColaborador = new ShowColaboradorService();
+        const showColaborador = new ShowColaboradorByNameService();
 
         const colaborador = await showColaborador.execute({ nome });
+        return response.json(colaborador);
+      }
+    } catch (error) {
+      console.log(error);
+      return response.status(500).json();
+    }
+  }
+
+  public async showByID(
+    request: Request,
+    response: Response
+  ): Promise<Response> {
+    try {
+      {
+        const { id } = request.params;
+        const showColaborador = new ShowColaboradorByIDService();
+
+        const colaborador = await showColaborador.execute({ id });
         return response.json(colaborador);
       }
     } catch (error) {

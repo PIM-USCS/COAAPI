@@ -27,6 +27,16 @@ colaboradorRouter.get(
   colaboradorController.show
 );
 
+colaboradorRouter.get(
+  "/:id",
+  celebrate({
+    [Segments.PARAMS]: {
+      id: Joi.string().required(),
+    },
+  }),
+  colaboradorController.showByID
+);
+
 colaboradorRouter.post(
   "/",
   celebrate({

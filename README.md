@@ -1,3 +1,7 @@
+## ATUALIZAR PROJETO
+
+Antes de iniciar alguma alteração, verificar se existe alguma atualização no git hub. Para fazer isso basta utilizar o comando no cmd git pull que irá trazer tudo o que foi alterado
+
 ## NODE
 
 Utilizar a versão do node 16.18

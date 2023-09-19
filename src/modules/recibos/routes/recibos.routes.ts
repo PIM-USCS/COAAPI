@@ -5,6 +5,13 @@ import RecibosController from "../controller/RecibosController";
 const reciboRouter = Router();
 const reciboController = new RecibosController();
 
+const arraySchema = Joi.array().items(
+  Joi.object({
+    data_recibo: Joi.string().required(),
+    arquivo: Joi.string(),
+  })
+);
+
 reciboRouter.get("/", reciboController.index);
 
 reciboRouter.get(
@@ -18,12 +25,10 @@ reciboRouter.get(
 );
 
 reciboRouter.post(
-  "/",
+  "/:cobranca_id",
   celebrate({
     [Segments.BODY]: {
-      data_recibo: Joi.string().required(),
-      cobranca_id: Joi.string(),
-      arquivo: Joi.string(),
+      recibos: arraySchema,
     },
   }),
 

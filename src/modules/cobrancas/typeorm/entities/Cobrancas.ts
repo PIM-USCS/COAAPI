@@ -1,11 +1,9 @@
-import { Recibo } from "../../../../modules/recibos/typeorm/entities/Recibos";
 import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToMany,
 } from "typeorm";
 
 @Entity()
@@ -14,10 +12,10 @@ export class Cobranca {
   id: number;
 
   @Column()
-  vencimento_cobranca: Date;
+  vencimento_cobranca: string;
 
   @Column()
-  emissao_cobranca: Date;
+  emissao_cobranca: string;
 
   @Column()
   valor: string;
@@ -26,13 +24,7 @@ export class Cobranca {
   status: string;
 
   @Column()
-  mimeType: string;
-
-  @Column("blob")
-  data: Buffer;
-
-  @OneToMany(() => Recibo, (recibo) => recibo.id)
-  recibo: Recibo[];
+  arquivo: string;
 
   @CreateDateColumn()
   created_at: Date;

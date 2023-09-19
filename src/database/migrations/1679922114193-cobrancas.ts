@@ -15,18 +15,14 @@ export class cobrancas1679922114193 implements MigrationInterface {
           },
           {
             name: "vencimento_cobranca",
-            type: "date",
-          },
-          {
-            name: "emissao_cobranca",
-            type: "date",
-          },
-          {
-            name: "valor",
             type: "string",
           },
           {
-            name: "recibo_id",
+            name: "emissao_cobranca",
+            type: "string",
+          },
+          {
+            name: "valor",
             type: "string",
           },
           {
@@ -34,12 +30,9 @@ export class cobrancas1679922114193 implements MigrationInterface {
             type: "string",
           },
           {
-            name: "mimeType",
+            name: "arquivo",
             type: "varchar",
-          },
-          {
-            name: "data",
-            type: "blob",
+            isNullable: true,
           },
           {
             name: "created_at",
@@ -51,16 +44,6 @@ export class cobrancas1679922114193 implements MigrationInterface {
             name: "update_at",
             type: "timestamp",
             default: "now()",
-          },
-        ],
-        foreignKeys: [
-          {
-            name: "recibo_id",
-            referencedTableName: "recibos",
-            referencedColumnNames: ["id"],
-            columnNames: ["recibo_id"],
-            onDelete: "CASCADE",
-            onUpdate: "CASCADE",
           },
         ],
       })

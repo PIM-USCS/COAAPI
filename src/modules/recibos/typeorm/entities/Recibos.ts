@@ -6,23 +6,25 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   ManyToOne,
+  JoinColumn,
 } from "typeorm";
 
 @Entity()
 export class Recibo {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: string;
 
   @Column()
-  data_recibo: Date;
+  data_recibo: string;
 
   @Column()
-  mimeType: string;
+  cobranca_id: string;
 
-  @Column("blob")
-  data: Buffer;
+  @Column()
+  arquivo: string;
 
   @ManyToOne(() => Cobranca, (cobranca) => cobranca.id)
+  @JoinColumn({ name: "cobranca_id" })
   cobranca: Cobranca;
 
   @CreateDateColumn()

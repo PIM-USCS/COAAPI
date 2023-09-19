@@ -21,19 +21,16 @@ export class CreateReciboTable1635306442000 implements MigrationInterface {
           },
           {
             name: "data_recibo",
-            type: "date",
+            type: "string",
           },
           {
             name: "cobranca_id",
-            type: "integer",
+            type: "string",
           },
           {
-            name: "mineType",
+            name: "arquivo",
             type: "varchar",
-          },
-          {
-            name: "data",
-            type: "blob",
+            isNullable: true,
           },
           {
             name: "created_at",

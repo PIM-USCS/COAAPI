@@ -1,5 +1,6 @@
 import { getCustomRepository } from "typeorm";
 import { EmpresaRepository } from "../typeorm/repositories/EmpresasRepository";
+import AppError from "@shared/errors/AppError";
 
 interface IRequest {
   id: string;
@@ -12,7 +13,7 @@ class DeleteEmpresaService {
     const empresas = await empresasRepository.findOne(id);
 
     if (!empresas) {
-      throw new Error("Empresa não encontrada.");
+      throw new AppError("Empresa não encontrada.");
     }
 
     await empresasRepository.remove(empresas);

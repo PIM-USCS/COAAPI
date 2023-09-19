@@ -3,8 +3,37 @@ import CreateUsuarioService from "../services/CreateUsuarioService";
 import ListUsuarioService from "../services/ListUsuarioService";
 import ShowUsuarioService from "../services/ShowUsuarioService";
 import UpdateUsuarioService from "../services/UpdateUsuarioService";
-
+import jwt from "jsonwebtoken";
+import { RecuperarSenhaService } from "../services/RecuperarSenhaService";
+import { generateToken } from "../services/generateToken";
+import UsuarioRepository from "../typeorm/repositories/UsuariosRepository";
+import { getCustomRepository } from "typeorm";
+import { hash } from "bcryptjs";
 export default class UsuariosController {
+  public async RecuperarSenhaController(req: Request, res: Response) {
+    try {
+      const { email } = req.body;
+
+      const userRepository = getCustomRepository(UsuarioRepository);
+      const user = await userRepository.findByEmail(email);
+
+      if (!user) {
+        return res.status(404).json({ error: "Usuário não encontrado" });
+      }
+
+      const resetToken = generateToken(user.id);
+
+      await RecuperarSenhaService(user.email, resetToken);
+
+      return res.json({
+        message:
+          "Um e-mail com as instruções foi enviado para o seu endereço de e-mail.",
+      });
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json();
+    }
+  }
   public async index(request: Request, response: Response): Promise<Response> {
     try {
       const listUsuarios = new ListUsuarioService();
@@ -68,5 +97,31 @@ export default class UsuariosController {
       return response.status(500).json();
     }
   }
-  //   public async delete(request: Request, response: Response): Promise<Response> {
+  public async resetPassword(req: Request, res: Response) {
+    const { token } = req.params;
+    const { newPassword } = req.body;
+
+    try {
+      const secret = process.env.JWT_SECRET || "suaChaveSecreta";
+
+      console.log(secret, "controller");
+      const decodedToken = jwt.verify(token, secret) as { sub: string };
+
+      const userRepository = getCustomRepository(UsuarioRepository);
+      const user = await userRepository.findById(decodedToken.sub);
+
+      if (!user) {
+        return res.status(404).json({ error: "Usuário não encontrado" });
+      }
+
+      const newPasswordHash = await hash(newPassword, 8);
+      user.senha = newPasswordHash;
+
+      await userRepository.save(user);
+
+      return res.json({ message: "Senha redefinida com sucesso" });
+    } catch (error) {
+      return res.status(401).json({ error: "Token inválido ou expirado" });
+    }
+  }
 }

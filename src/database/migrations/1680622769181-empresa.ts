@@ -98,7 +98,6 @@ export class empresa1680622769181 implements MigrationInterface {
             referencedTableName: "colaborador",
             referencedColumnNames: ["id"],
             columnNames: ["id_colaborador"],
-            onDelete: "CASCADE",
             onUpdate: "CASCADE",
           },
         ],

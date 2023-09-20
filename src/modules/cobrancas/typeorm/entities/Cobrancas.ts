@@ -1,13 +1,16 @@
+import Empresa from "../../../empresas/typeorm/entities/Empresa";
 import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from "typeorm";
 
 @Entity()
-export class Cobranca {
+export class Cobrancas {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -25,6 +28,13 @@ export class Cobranca {
 
   @Column()
   arquivo: string;
+
+  @Column()
+  id_empresa: string;
+
+  @ManyToOne(() => Empresa, (empresa) => empresa.id)
+  @JoinColumn({ name: "id_empresa" })
+  empresa: Empresa;
 
   @CreateDateColumn()
   created_at: Date;

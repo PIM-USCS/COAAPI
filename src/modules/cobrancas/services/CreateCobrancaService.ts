@@ -1,5 +1,5 @@
 import { getCustomRepository } from "typeorm";
-import { Cobranca } from "../typeorm/entities/Cobrancas";
+import { Cobrancas } from "../typeorm/entities/Cobrancas";
 import { CobrancaRepository } from "../typeorm/repositories/CobrancaRepository";
 
 interface IRequest {
@@ -8,6 +8,7 @@ interface IRequest {
   valor: string;
   status: string;
   arquivo: string;
+  id_empresa: string;
 }
 
 class CreateCobrancaService {
@@ -17,7 +18,8 @@ class CreateCobrancaService {
     valor,
     status,
     arquivo,
-  }: IRequest): Promise<Cobranca> {
+    id_empresa,
+  }: IRequest): Promise<Cobrancas> {
     const cobrancaRepository = getCustomRepository(CobrancaRepository);
 
     const cobranca = await cobrancaRepository.create({
@@ -26,6 +28,7 @@ class CreateCobrancaService {
       valor,
       status,
       arquivo,
+      id_empresa,
     });
 
     await cobrancaRepository.save(cobranca);

@@ -1,6 +1,6 @@
 import AppError from "@shared/errors/AppError";
 import { getCustomRepository } from "typeorm";
-import { Cobranca } from "../typeorm/entities/Cobrancas";
+import { Cobrancas } from "../typeorm/entities/Cobrancas";
 import { CobrancaRepository } from "../typeorm/repositories/CobrancaRepository";
 
 interface IRequest {
@@ -8,7 +8,7 @@ interface IRequest {
 }
 
 class ShowCobrancaService {
-  public async execute({ id }: IRequest): Promise<Cobranca> {
+  public async execute({ id }: IRequest): Promise<Cobrancas> {
     const cobrancasRepository = getCustomRepository(CobrancaRepository);
 
     const cobrancas = await cobrancasRepository.findOne(id);

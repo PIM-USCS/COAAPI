@@ -48,54 +48,7 @@ export default class RecibosController {
       return response.status(500).json();
     }
   }
-  //   public async update(request: Request, response: Response): Promise<Response> {
-  //     try {
-  //       const {
-  //         tipo_cliente,
-  //         cnpj,
-  //         ie,
-  //         cpf,
-  //         rg,
-  //         nome,
-  //         cep,
-  //         rua,
-  //         cidade,
-  //         uf,
-  //         bairro,
-  //         numero,
-  //         complemento,
-  //         cliente,
-  //       } = request.body;
 
-  //       const { id } = request.params;
-
-  //       const updateEmpresa = new UpdateEmpresaService();
-  //       const empresa = await updateEmpresa.execute({
-  //         id,
-  //         tipo_cliente,
-
-  //         cnpj,
-  //         ie,
-  //         cpf,
-  //         rg,
-  //         nome,
-  //         cep,
-  //         rua,
-  //         cidade,
-  //         uf,
-  //         bairro,
-  //         numero,
-  //         complemento,
-
-  //         cliente,
-  //       });
-
-  //       return response.json(empresa);
-  //     } catch (error) {
-  //       console.error(error);
-  //       return response.status(500).json();
-  //     }
-  //   }
   public async delete(request: Request, response: Response): Promise<Response> {
     try {
       const { id } = request.params;

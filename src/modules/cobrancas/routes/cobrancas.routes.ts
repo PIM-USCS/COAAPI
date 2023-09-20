@@ -18,11 +18,11 @@ cobrancasRouter.get(
 );
 
 cobrancasRouter.post(
-  "/",
+  "/:id_empresa",
   celebrate({
     [Segments.BODY]: {
-      vencimento_cobranca: Joi.string().required,
-      emissao_cobranca: Joi.string().required,
+      vencimento_cobranca: Joi.string(),
+      emissao_cobranca: Joi.string(),
       arquivo: Joi.string(),
       valor: Joi.string(),
       status: Joi.string(),

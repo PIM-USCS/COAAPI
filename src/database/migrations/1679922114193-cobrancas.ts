@@ -35,6 +35,10 @@ export class cobrancas1679922114193 implements MigrationInterface {
             isNullable: true,
           },
           {
+            name: "id_empresa",
+            type: "varchar",
+          },
+          {
             name: "created_at",
             type: "timestamp",
             default: "now()",
@@ -44,6 +48,17 @@ export class cobrancas1679922114193 implements MigrationInterface {
             name: "update_at",
             type: "timestamp",
             default: "now()",
+          },
+        ],
+
+        foreignKeys: [
+          {
+            name: "id_empresa",
+            referencedTableName: "empresas",
+            referencedColumnNames: ["id"],
+            columnNames: ["id_empresa"],
+            onDelete: "CASCADE",
+            onUpdate: "CASCADE",
           },
         ],
       })

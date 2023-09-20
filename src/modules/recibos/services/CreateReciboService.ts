@@ -1,5 +1,5 @@
 import { getCustomRepository } from "typeorm";
-import { Recibo } from "../typeorm/entities/Recibos";
+import { Recibos } from "../typeorm/entities/Recibos";
 import { ReciboRepository } from "../typeorm/repositories/ReciboRepository";
 
 interface IRequest {
@@ -16,6 +16,7 @@ class CreateReciboService {
         const newRecibo = reciboRepository.create({
           data_recibo,
           arquivo,
+          cobranca_id,
         });
 
         await reciboRepository.save(newRecibo);

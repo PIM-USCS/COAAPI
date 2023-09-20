@@ -1,15 +1,15 @@
-import { getCustomRepository } from 'typeorm'
-import { Recibo } from '../typeorm/entities/Recibos'
-import { ReciboRepository } from '../typeorm/repositories/ReciboRepository'
+import { getCustomRepository } from "typeorm";
+import { Recibos } from "../typeorm/entities/Recibos";
+import { ReciboRepository } from "../typeorm/repositories/ReciboRepository";
 
 class ListReciboService {
   public async execute(): Promise<Recibo[]> {
-    const recibosRepository = getCustomRepository(ReciboRepository)
+    const recibosRepository = getCustomRepository(ReciboRepository);
 
-    const recibos = await recibosRepository.find()
+    const recibos = await recibosRepository.find();
 
-    return recibos
+    return recibos;
   }
 }
 
-export default ListReciboService
+export default ListReciboService;

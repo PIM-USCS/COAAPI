@@ -1,4 +1,4 @@
-import { Cobranca } from "../../../../modules/cobrancas/typeorm/entities/Cobrancas";
+import { Cobrancas } from "../../../../modules/cobrancas/typeorm/entities/Cobrancas";
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -10,7 +10,7 @@ import {
 } from "typeorm";
 
 @Entity()
-export class Recibo {
+export class Recibos {
   @PrimaryGeneratedColumn()
   id: string;
 
@@ -23,9 +23,9 @@ export class Recibo {
   @Column()
   arquivo: string;
 
-  @ManyToOne(() => Cobranca, (cobranca) => cobranca.id)
+  @ManyToOne(() => Cobrancas, (cobrancas) => cobrancas.id)
   @JoinColumn({ name: "cobranca_id" })
-  cobranca: Cobranca;
+  cobrancas: Cobrancas;
 
   @CreateDateColumn()
   created_at: Date;

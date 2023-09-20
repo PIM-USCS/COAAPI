@@ -36,6 +36,8 @@ export default class CobrancasController {
     try {
       const { vencimento_cobranca, emissao_cobranca, valor, arquivo, status } =
         request.body;
+
+      const { id_empresa } = request.params;
       const createCobranca = new CreateCobrancaService();
 
       const cobranca = await createCobranca.execute({
@@ -44,6 +46,7 @@ export default class CobrancasController {
         arquivo,
         valor,
         status,
+        id_empresa,
       });
       return response.json(cobranca);
     } catch (error) {

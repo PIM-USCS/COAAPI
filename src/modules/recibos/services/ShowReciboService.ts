@@ -1,22 +1,22 @@
-import AppError from '@shared/errors/AppError'
-import { getCustomRepository } from 'typeorm'
-import { Recibo } from '../typeorm/entities/Recibos'
-import { ReciboRepository } from '../typeorm/repositories/ReciboRepository'
+import AppError from "@shared/errors/AppError";
+import { getCustomRepository } from "typeorm";
+import { Recibos } from "../typeorm/entities/Recibos";
+import { ReciboRepository } from "../typeorm/repositories/ReciboRepository";
 
 interface IRequest {
-  id: string
+  id: string;
 }
 
 class ShowReciboService {
   public async execute({ id }: IRequest): Promise<Recibo> {
-    const recibosRepository = getCustomRepository(ReciboRepository)
+    const recibosRepository = getCustomRepository(ReciboRepository);
 
-    const recibos = await recibosRepository.findOne(id)
+    const recibos = await recibosRepository.findOne(id);
 
     if (!recibos) {
-      throw new AppError('Recibo não encontrado')
+      throw new AppError("Recibo não encontrado");
     }
-    return recibos
+    return recibos;
   }
 }
-export default ShowReciboService
+export default ShowReciboService;

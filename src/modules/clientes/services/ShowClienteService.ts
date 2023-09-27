@@ -11,7 +11,7 @@ class ShowClienteService {
   public async execute({ id_empresa }: IRequest): Promise<Clientes> {
     const clientesRepository = getCustomRepository(ClienteRepository);
 
-    const clientes = await clientesRepository.findOne(id_empresa);
+    const clientes = await clientesRepository.findByEmpresa(id_empresa);
 
     if (!clientes) {
       throw new AppError("Cliente não encontrado");

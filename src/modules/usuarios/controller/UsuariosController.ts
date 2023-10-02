@@ -104,7 +104,6 @@ export default class UsuariosController {
     try {
       const secret = process.env.JWT_SECRET || "suaChaveSecreta";
 
-      console.log(secret, "controller");
       const decodedToken = jwt.verify(token, secret) as { sub: string };
 
       const userRepository = getCustomRepository(UsuarioRepository);

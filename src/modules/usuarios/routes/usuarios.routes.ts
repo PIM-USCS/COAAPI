@@ -81,12 +81,5 @@ usuariosRouter.post(
   }),
   usuariosController.RecuperarSenhaController
 );
-// routes.ts
-
-// Rota para redefinir a senha
-// usuariosRouter.post("/reset-password/:token", RecuperarSenhaController);
-// Rota para solicitar a recuperação de senha
-
-// Rota para redefinir a senha
 
 export default usuariosRouter;

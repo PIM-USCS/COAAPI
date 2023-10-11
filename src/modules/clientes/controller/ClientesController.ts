@@ -4,6 +4,7 @@ import DeleteClienteService from "../services/DeleteClienteService";
 import ListClienteService from "../services/ListClienteService";
 import ShowClienteService from "../services/ShowClienteService";
 import UpdateClienteService from "../services/UpdateClienteService";
+import ShowClienteByCPFService from "../services/ShowClienteByCPFService";
 
 export default class ClientesController {
   public async index(request: Request, response: Response): Promise<Response> {
@@ -32,6 +33,23 @@ export default class ClientesController {
       return response.status(500).json();
     }
   }
+
+  public async showByCPF(
+    request: Request,
+    response: Response
+  ): Promise<Response> {
+    try {
+      const { cpf } = request.params;
+      const showClienteCPF = new ShowClienteByCPFService();
+
+      const cliente = await showClienteCPF.execute({ cpf });
+      return response.json(cliente);
+    } catch (error) {
+      console.error(error);
+      return response.status(500).json();
+    }
+  }
+
   public async create(request: Request, response: Response): Promise<Response> {
     try {
       const { cpf, rg, nome, telefone, email, usuario } = request.body;

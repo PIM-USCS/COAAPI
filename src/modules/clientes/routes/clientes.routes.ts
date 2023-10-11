@@ -17,6 +17,16 @@ clientesRouter.get(
   clientesController.show
 );
 
+clientesRouter.get(
+  "/getCPF/:cpf",
+  celebrate({
+    [Segments.PARAMS]: {
+      cpf: Joi.string().required(),
+    },
+  }),
+  clientesController.showByCPF
+);
+
 clientesRouter.post(
   "/:id_empresa",
   celebrate({

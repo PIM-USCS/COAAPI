@@ -9,4 +9,8 @@ export class ClienteRepository extends Repository<Clientes> {
     const cliente = this.findOne({ where: { id_empresa } });
     return cliente;
   }
+  public async findByCPF(cpf: string): Promise<Clientes | undefined> {
+    const cliente = await this.findOne({ where: { cpf } });
+    return cliente;
+  }
 }

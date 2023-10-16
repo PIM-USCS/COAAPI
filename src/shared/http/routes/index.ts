@@ -1,6 +1,7 @@
 import clientesRouter from "@modules/clientes/routes/clientes.routes";
 import cobrancasRouter from "@modules/cobrancas/routes/cobrancas.routes";
 import colaboradorRouter from "@modules/colaborador/routes/colaborador.routes";
+import dashboardRouter from "@modules/dashboard/routes/dashboard.routes";
 import empresaRouter from "@modules/empresas/routes/empresas.routes";
 import reciboRouter from "@modules/recibos/routes/recibos.routes";
 import regimeRouter from "@modules/regime/routes/regime.routes";
@@ -19,7 +20,7 @@ routes.use("/empresas", empresaRouter);
 routes.use("/colaborador", colaboradorRouter);
 routes.use("/recibos", reciboRouter);
 routes.use("/cobrancas", cobrancasRouter);
-
+routes.use("/dashboard", dashboardRouter);
 routes.get("/", (request, response) => {
   return response.json({ message: "Hello Dev!" });
 });

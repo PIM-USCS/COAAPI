@@ -5,6 +5,7 @@ import dashboardRouter from "@modules/dashboard/routes/dashboard.routes";
 import empresaRouter from "@modules/empresas/routes/empresas.routes";
 import reciboRouter from "@modules/recibos/routes/recibos.routes";
 import regimeRouter from "@modules/regime/routes/regime.routes";
+import uploadsRouter from "@modules/usuarios/routes/file.routes";
 import sessionsRouter from "@modules/usuarios/routes/sessions.routes";
 import usuariosRouter from "@modules/usuarios/routes/usuarios.routes";
 
@@ -21,6 +22,7 @@ routes.use("/colaborador", colaboradorRouter);
 routes.use("/recibos", reciboRouter);
 routes.use("/cobrancas", cobrancasRouter);
 routes.use("/dashboard", dashboardRouter);
+routes.use("/uploads", uploadsRouter);
 routes.get("/", (request, response) => {
   return response.json({ message: "Hello Dev!" });
 });

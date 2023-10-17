@@ -7,18 +7,15 @@ import fs from "fs";
 import uploadConfig from "@config/upload";
 
 interface IRequest {
-  usuario_id: string;
+  id: string;
   avatarFilename: string;
 }
 
 class UpdateUsuarioAvatarService {
-  public async execute({
-    usuario_id,
-    avatarFilename,
-  }: IRequest): Promise<Usuario> {
+  public async execute({ id, avatarFilename }: IRequest): Promise<Usuario> {
     const usuariosRepository = getCustomRepository(UsuariosRepostiroy);
 
-    const usuario = await usuariosRepository.findById(usuario_id);
+    const usuario = await usuariosRepository.findById(id);
 
     if (!usuario) {
       throw new AppError("Usuário não encontrado");

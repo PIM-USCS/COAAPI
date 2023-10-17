@@ -4,7 +4,6 @@ import multer from "multer";
 import uploadConfig from "@config/upload";
 import UsuariosController from "../controller/UsuariosController";
 import UsuariosAvatarController from "../controller/UsuariosAvatarController";
-//import isAuthenticated from "../middleware/isAuthenticated";
 
 const usuariosRouter = Router();
 
@@ -41,8 +40,13 @@ usuariosRouter.post(
 );
 
 usuariosRouter.patch(
-  "/avatar",
+  "/avatar/:id",
   upload.single("avatar"),
+  celebrate({
+    [Segments.PARAMS]: {
+      id: Joi.string(),
+    },
+  }),
   usuariosAvatarController.update
 );
 

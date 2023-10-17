@@ -10,11 +10,9 @@ class UsuariosRepostiroy extends Repository<Usuario> {
     return usuario;
   }
 
-  public async findById(id: string): Promise<Usuario | undefined> {
-    const usuario = await this.findOne({
-      where: { id },
-    });
-    return usuario;
+  public async findById(id: string): Promise<Usuario | null> {
+    const usuario = await this.findOne(id);
+    return usuario || null;
   }
 }
 

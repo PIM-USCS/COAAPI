@@ -33,13 +33,14 @@ export default class RecibosController {
   }
   public async create(request: Request, response: Response): Promise<Response> {
     try {
-      const { recibos } = request.body;
+      const { arquivo, data_recibo } = request.body;
       const { cobranca_id } = request.params;
 
       const createRecibo = new CreateReciboService();
 
       const recibo = await createRecibo.execute({
-        recibos,
+        arquivo,
+        data_recibo,
         cobranca_id,
       });
       return response.json(recibo);

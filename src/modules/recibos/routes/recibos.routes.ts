@@ -1,16 +1,13 @@
 import { Router } from "express";
 import { celebrate, Joi, Segments } from "celebrate";
 import RecibosController from "../controller/RecibosController";
-
+import multer from "multer";
+import uploadConfig from "@config/upload";
+import ReciboImageController from "../controller/ReciboImageController";
 const reciboRouter = Router();
 const reciboController = new RecibosController();
-
-const arraySchema = Joi.array().items(
-  Joi.object({
-    data_recibo: Joi.string().required(),
-    arquivo: Joi.string(),
-  })
-);
+const reciboImagemController = new ReciboImageController();
+const upload = multer(uploadConfig);
 
 reciboRouter.get("/", reciboController.index);
 
@@ -28,11 +25,23 @@ reciboRouter.post(
   "/:cobranca_id",
   celebrate({
     [Segments.BODY]: {
-      recibos: arraySchema,
+      data_recibo: Joi.string().required(),
+      arquivo: Joi.string(),
     },
   }),
 
   reciboController.create
+);
+
+reciboRouter.patch(
+  "/anexo/:id",
+  upload.single("anexo"),
+  celebrate({
+    [Segments.PARAMS]: {
+      id: Joi.string(),
+    },
+  }),
+  reciboImagemController.update
 );
 
 // reciboRouter.put(

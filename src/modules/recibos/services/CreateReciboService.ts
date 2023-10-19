@@ -4,26 +4,24 @@ import { ReciboRepository } from "../typeorm/repositories/ReciboRepository";
 
 interface IRequest {
   cobranca_id: string;
-  recibos: [];
+  data_recibo: string;
+  arquivo: string;
 }
 
 class CreateReciboService {
-  public async execute({ cobranca_id, recibos }: IRequest): Promise<any> {
+  public async execute({
+    cobranca_id,
+    data_recibo,
+    arquivo,
+  }: IRequest): Promise<any> {
     const reciboRepository = getCustomRepository(ReciboRepository);
 
-    await new Promise((resolve) => {
-      recibos.map(async ({ data_recibo, arquivo }) => {
-        const newRecibo = reciboRepository.create({
-          data_recibo,
-          arquivo,
-          cobranca_id,
-        });
-
-        await reciboRepository.save(newRecibo);
-      });
-
-      resolve;
+    const recibo = reciboRepository.create({
+      arquivo,
+      cobranca_id,
+      data_recibo,
     });
+    await reciboRepository.save(recibo);
     return;
   }
 }

@@ -12,13 +12,13 @@ const upload = multer(uploadConfig);
 reciboRouter.get("/", reciboController.index);
 
 reciboRouter.get(
-  "/:id",
+  "/:cobranca_id",
   celebrate({
     [Segments.PARAMS]: {
-      id: Joi.string().required(),
+      cobranca_id: Joi.string().required(),
     },
   }),
-  reciboController.show
+  reciboController.showByIDCobranca
 );
 
 reciboRouter.post(
@@ -26,7 +26,6 @@ reciboRouter.post(
   celebrate({
     [Segments.BODY]: {
       data_recibo: Joi.string().required(),
-      arquivo: Joi.string(),
     },
   }),
 
@@ -43,32 +42,6 @@ reciboRouter.patch(
   }),
   reciboImagemController.update
 );
-
-// reciboRouter.put(
-//   "/:id",
-//   celebrate({
-//     [Segments.BODY]: {
-//       tipo_cliente: Joi.string(),
-//       cnpj: Joi.string(),
-//       ie: Joi.string(),
-//       cpf: Joi.string(),
-//       rg: Joi.string(),
-//       nome: Joi.string(),
-//       cep: Joi.string(),
-//       rua: Joi.string(),
-//       cidade: Joi.string(),
-//       uf: Joi.string(),
-//       bairro: Joi.string(),
-//       numero: Joi.string(),
-//       complemento: Joi.string(),
-//       cliente: Joi.string(),
-//     },
-//     [Segments.PARAMS]: {
-//       id: Joi.string().required(),
-//     },
-//   }),
-//   reciboController.update
-// );
 
 reciboRouter.delete(
   "/:id",

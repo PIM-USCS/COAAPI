@@ -7,4 +7,10 @@ export class ReciboRepository extends Repository<Recibos> {
     const recibo = this.findOne({ where: { id } });
     return recibo;
   }
+  public async findByCobranca(
+    cobranca_id: string | undefined
+  ): Promise<Recibos | undefined> {
+    const recibo = this.findOne({ where: { cobranca_id } });
+    return recibo;
+  }
 }

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import ListReciboService from "../services/ListReciboService";
-import ShowReciboService from "../services/ShowReciboService";
+import ShowReciboService from "../services/ShowReciboByCobrancaService";
 import CreateReciboService from "../services/CreateReciboService";
 import DeleteReciboService from "../services/DeleteReciboService";
 
@@ -17,13 +17,16 @@ export default class RecibosController {
       return response.status(500).json();
     }
   }
-  public async show(request: Request, response: Response): Promise<Response> {
+  public async showByIDCobranca(
+    request: Request,
+    response: Response
+  ): Promise<Response> {
     try {
       {
-        const { id } = request.params;
+        const { cobranca_id } = request.params;
         const showRecibo = new ShowReciboService();
 
-        const recibo = await showRecibo.execute({ id });
+        const recibo = await showRecibo.execute({ cobranca_id });
         return response.json(recibo);
       }
     } catch (error) {

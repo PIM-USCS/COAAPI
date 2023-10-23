@@ -9,8 +9,8 @@ export class ReciboRepository extends Repository<Recibos> {
   }
   public async findByCobranca(
     cobranca_id: string | undefined
-  ): Promise<Recibos | undefined> {
-    const recibo = this.findOne({ where: { cobranca_id } });
-    return recibo;
+  ): Promise<Recibos[]> {
+    const recibos = this.find({ where: { cobranca_id } });
+    return recibos;
   }
 }

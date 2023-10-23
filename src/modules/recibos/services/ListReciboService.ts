@@ -3,7 +3,7 @@ import { Recibos } from "../typeorm/entities/Recibos";
 import { ReciboRepository } from "../typeorm/repositories/ReciboRepository";
 
 class ListReciboService {
-  public async execute(): Promise<Recibo[]> {
+  public async execute(): Promise<Recibos[]> {
     const recibosRepository = getCustomRepository(ReciboRepository);
 
     const recibos = await recibosRepository.find();

@@ -8,7 +8,7 @@ interface IRequest {
 }
 
 class ShowReciboService {
-  public async execute({ cobranca_id }: IRequest): Promise<Recibos> {
+  public async execute({ cobranca_id }: IRequest): Promise<Recibos[]> {
     const recibosRepository = getCustomRepository(ReciboRepository);
 
     const recibos = await recibosRepository.findByCobranca(cobranca_id);
@@ -16,7 +16,9 @@ class ShowReciboService {
     if (!recibos) {
       throw new AppError("Recibo não encontrado");
     }
+
     return recibos;
   }
 }
+
 export default ShowReciboService;

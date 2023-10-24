@@ -13,7 +13,7 @@ class CreateReciboService {
     cobranca_id,
     data_recibo,
     arquivo,
-  }: IRequest): Promise<any> {
+  }: IRequest): Promise<Recibos> {
     const reciboRepository = getCustomRepository(ReciboRepository);
 
     const recibo = reciboRepository.create({
@@ -22,7 +22,7 @@ class CreateReciboService {
       data_recibo,
     });
     await reciboRepository.save(recibo);
-    return;
+    return recibo;
   }
 }
 

@@ -3,6 +3,7 @@ import CreateCobrancaService from "../services/CreateCobrancaService";
 import DeleteCobrancasService from "../services/DeleteCobrancaService";
 import ListCobrancaService from "../services/ListCobrancaService";
 import ShowCobrancaService from "../services/ShowCobrancaService";
+import UpdateCobrancaService from "../services/UpdateCobrancaService";
 
 export default class CobrancasController {
   public async index(request: Request, response: Response): Promise<Response> {
@@ -64,5 +65,28 @@ export default class CobrancasController {
       console.error(error);
     }
     return response.json([]);
+  }
+
+  public async update(request: Request, response: Response): Promise<Response> {
+    try {
+      const { emissao_cobranca, vencimento_cobranca, status, valor } =
+        request.body;
+
+      const { id } = request.params;
+
+      const updateCobranca = new UpdateCobrancaService();
+      const cobranca = await updateCobranca.execute({
+        id,
+        emissao_cobranca,
+        vencimento_cobranca,
+        status,
+        valor,
+      });
+
+      return response.json(cobranca);
+    } catch (error) {
+      console.error(error);
+      return response.status(500).json();
+    }
   }
 }

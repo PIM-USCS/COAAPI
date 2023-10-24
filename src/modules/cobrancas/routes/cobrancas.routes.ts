@@ -41,4 +41,19 @@ cobrancasRouter.delete(
   cobrancasController.delete
 );
 
+cobrancasRouter.put(
+  "/:id",
+  celebrate({
+    [Segments.BODY]: {
+      emissao_cobranca: Joi.string(),
+      valor: Joi.string(),
+      status: Joi.string(),
+      vencimento_cobranca: Joi.string(),
+    },
+    [Segments.PARAMS]: {
+      id: Joi.string().required(),
+    },
+  }),
+  cobrancasController.update
+);
 export default cobrancasRouter;

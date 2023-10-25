@@ -49,6 +49,7 @@ cobrancasRouter.put(
       valor: Joi.string(),
       status: Joi.string(),
       vencimento_cobranca: Joi.string(),
+      id_empresa: Joi.string(),
     },
     [Segments.PARAMS]: {
       id: Joi.string().required(),

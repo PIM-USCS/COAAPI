@@ -69,8 +69,13 @@ export default class CobrancasController {
 
   public async update(request: Request, response: Response): Promise<Response> {
     try {
-      const { emissao_cobranca, vencimento_cobranca, status, valor } =
-        request.body;
+      const {
+        emissao_cobranca,
+        vencimento_cobranca,
+        status,
+        valor,
+        id_empresa,
+      } = request.body;
 
       const { id } = request.params;
 
@@ -81,6 +86,7 @@ export default class CobrancasController {
         vencimento_cobranca,
         status,
         valor,
+        id_empresa,
       });
 
       return response.json(cobranca);

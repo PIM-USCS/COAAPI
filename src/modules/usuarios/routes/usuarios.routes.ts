@@ -55,6 +55,7 @@ usuariosRouter.put(
   celebrate({
     [Segments.BODY]: {
       email: Joi.string(),
+      senha: Joi.string(),
     },
     [Segments.PARAMS]: {
       id: Joi.string().required(),

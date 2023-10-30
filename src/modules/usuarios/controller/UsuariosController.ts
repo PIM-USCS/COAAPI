@@ -82,13 +82,14 @@ export default class UsuariosController {
   }
   public async update(request: Request, response: Response): Promise<Response> {
     try {
-      const { email } = request.body;
+      const { email, senha } = request.body;
       const { id } = request.params;
 
       const updateUsuario = new UpdateUsuarioService();
       const usuario = await updateUsuario.execute({
         id,
         email,
+        senha,
       });
 
       return response.json(usuario);

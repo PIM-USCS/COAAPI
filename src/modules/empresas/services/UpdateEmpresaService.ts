@@ -19,7 +19,6 @@ interface IRequest {
   numero: string;
   complemento: string;
   cliente: string;
-  ativa: string;
 }
 
 class UpdateEmpresaService {
@@ -38,7 +37,7 @@ class UpdateEmpresaService {
     bairro,
     numero,
     complemento,
-    ativa,
+
     cliente,
   }: IRequest): Promise<Empresa> {
     const empresasRepository = getCustomRepository(EmpresaRepository);
@@ -62,7 +61,7 @@ class UpdateEmpresaService {
     empresas.bairro = bairro;
     empresas.numero = numero;
     empresas.complemento = complemento;
-    empresas.ativa = ativa;
+
     // empresas.cliente = cliente;
 
     await empresasRepository.save(empresas);

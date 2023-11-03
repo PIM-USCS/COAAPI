@@ -61,13 +61,25 @@ empresaRouter.put(
       numero: Joi.string(),
       complemento: Joi.string(),
       cliente: Joi.string(),
-      ativa: Joi.string(),
     },
     [Segments.PARAMS]: {
       id: Joi.string().required(),
     },
   }),
   empresaController.update
+);
+
+empresaRouter.put(
+  "/:id",
+  celebrate({
+    [Segments.BODY]: {
+      ativa: Joi.string(),
+    },
+    [Segments.PARAMS]: {
+      id: Joi.string().required(),
+    },
+  }),
+  empresaController.inativaAtiva
 );
 
 empresaRouter.delete(

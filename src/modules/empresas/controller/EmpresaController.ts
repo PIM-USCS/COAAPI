@@ -4,6 +4,7 @@ import ShowEmpresaService from "../services/ShowEmpresaService";
 import CreateEmpresaService from "../services/CreateEmpresaService";
 import UpdateEmpresaService from "../services/UpdateEmpresaService";
 import DeleteEmpresaService from "../services/DeleteEmpresaService";
+import InativaAtivaEmpresaService from "../services/InativaAtivaEmpresaService";
 
 export default class EmpresaController {
   public async index(request: Request, response: Response): Promise<Response> {
@@ -95,7 +96,6 @@ export default class EmpresaController {
         numero,
         complemento,
         cliente,
-        ativa,
       } = request.body;
 
       const { id } = request.params;
@@ -104,7 +104,6 @@ export default class EmpresaController {
       const empresa = await updateEmpresa.execute({
         id,
         tipo_cliente,
-
         cnpj,
         ie,
         cpf,
@@ -117,8 +116,29 @@ export default class EmpresaController {
         bairro,
         numero,
         complemento,
-        ativa,
         cliente,
+      });
+
+      return response.json(empresa);
+    } catch (error) {
+      console.error(error);
+      return response.status(500).json();
+    }
+  }
+
+  public async inativaAtiva(
+    request: Request,
+    response: Response
+  ): Promise<Response> {
+    try {
+      const { ativa } = request.body;
+
+      const { id } = request.params;
+
+      const updateEmpresa = new InativaAtivaEmpresaService();
+      const empresa = await updateEmpresa.execute({
+        id,
+        ativa,
       });
 
       return response.json(empresa);

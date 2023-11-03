@@ -70,7 +70,7 @@ empresaRouter.put(
 );
 
 empresaRouter.put(
-  "/:id",
+  "/ativa/:id",
   celebrate({
     [Segments.BODY]: {
       ativa: Joi.string(),

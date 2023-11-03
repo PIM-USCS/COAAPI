@@ -39,6 +39,10 @@ export class cobrancas1679922114193 implements MigrationInterface {
             type: "varchar",
           },
           {
+            name: "descricao",
+            type: "varchar",
+          },
+          {
             name: "created_at",
             type: "timestamp",
             default: "now()",

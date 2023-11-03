@@ -32,6 +32,9 @@ export class Cobrancas {
   @Column()
   id_empresa: string;
 
+  @Column()
+  descricao: string;
+
   @ManyToOne(() => Empresa, (empresa) => empresa.id)
   @JoinColumn({ name: "id_empresa" })
   empresa: Empresa;

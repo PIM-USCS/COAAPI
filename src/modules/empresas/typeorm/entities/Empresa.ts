@@ -56,6 +56,9 @@ class Empresa {
   @Column()
   id_colaborador: string;
 
+  @Column()
+  ativa: string;
+
   @ManyToOne(() => Colaborador, (colaborador) => colaborador.id)
   @JoinColumn({ name: "id_colaborador" })
   colaborador: Colaborador;

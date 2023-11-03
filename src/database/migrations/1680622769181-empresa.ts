@@ -81,6 +81,10 @@ export class empresa1680622769181 implements MigrationInterface {
             isNullable: true,
           },
           {
+            name: "ativa",
+            type: "varchar",
+          },
+          {
             name: "created_at",
             type: "timestamp",
             default: "now()",

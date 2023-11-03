@@ -36,6 +36,7 @@ empresaRouter.post(
       numero: Joi.string(),
       complemento: Joi.string(),
       id_colaborador: Joi.string(),
+      ativa: Joi.string(),
     },
   }),
 
@@ -60,6 +61,7 @@ empresaRouter.put(
       numero: Joi.string(),
       complemento: Joi.string(),
       cliente: Joi.string(),
+      ativa: Joi.string(),
     },
     [Segments.PARAMS]: {
       id: Joi.string().required(),

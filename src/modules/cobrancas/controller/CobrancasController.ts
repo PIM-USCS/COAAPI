@@ -35,8 +35,14 @@ export default class CobrancasController {
 
   public async create(request: Request, response: Response): Promise<Response> {
     try {
-      const { vencimento_cobranca, emissao_cobranca, valor, arquivo, status } =
-        request.body;
+      const {
+        vencimento_cobranca,
+        emissao_cobranca,
+        valor,
+        arquivo,
+        status,
+        descricao,
+      } = request.body;
 
       const { id_empresa } = request.params;
       const createCobranca = new CreateCobrancaService();
@@ -48,6 +54,7 @@ export default class CobrancasController {
         valor,
         status,
         id_empresa,
+        descricao,
       });
       return response.json(cobranca);
     } catch (error) {
@@ -75,6 +82,7 @@ export default class CobrancasController {
         status,
         valor,
         id_empresa,
+        descricao,
       } = request.body;
 
       const { id } = request.params;
@@ -87,6 +95,7 @@ export default class CobrancasController {
         status,
         valor,
         id_empresa,
+        descricao,
       });
 
       return response.json(cobranca);

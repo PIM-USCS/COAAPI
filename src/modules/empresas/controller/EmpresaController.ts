@@ -49,6 +49,7 @@ export default class EmpresaController {
         numero,
         complemento,
         id_colaborador,
+        ativa,
       } = request.body;
 
       const { id_cliente } = request.params;
@@ -69,6 +70,7 @@ export default class EmpresaController {
         numero,
         complemento,
         id_colaborador,
+        ativa,
       });
       return response.json(empresa);
     } catch (error) {
@@ -93,6 +95,7 @@ export default class EmpresaController {
         numero,
         complemento,
         cliente,
+        ativa,
       } = request.body;
 
       const { id } = request.params;
@@ -114,7 +117,7 @@ export default class EmpresaController {
         bairro,
         numero,
         complemento,
-
+        ativa,
         cliente,
       });
 

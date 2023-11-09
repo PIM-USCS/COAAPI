@@ -8,6 +8,7 @@ import regimeRouter from "@modules/regime/routes/regime.routes";
 import uploadsRouter from "@modules/usuarios/routes/file.routes";
 import sessionsRouter from "@modules/usuarios/routes/sessions.routes";
 import usuariosRouter from "@modules/usuarios/routes/usuarios.routes";
+import tiposguiaRouter from "@modules/tiposguia/routes/tiposguia.routes";
 
 import { Router } from "express";
 
@@ -23,6 +24,7 @@ routes.use("/recibos", reciboRouter);
 routes.use("/cobrancas", cobrancasRouter);
 routes.use("/dashboard", dashboardRouter);
 routes.use("/uploads", uploadsRouter);
+routes.use("tiposguia", tiposguiaRouter);
 routes.get("/", (request, response) => {
   return response.json({ message: "Hello Dev!" });
 });

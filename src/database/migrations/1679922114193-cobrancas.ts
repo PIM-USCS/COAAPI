@@ -38,8 +38,9 @@ export class cobrancas1679922114193 implements MigrationInterface {
             name: "id_empresa",
             type: "varchar",
           },
+
           {
-            name: "descricao",
+            name: "tipoguia",
             type: "varchar",
           },
           {
@@ -61,6 +62,14 @@ export class cobrancas1679922114193 implements MigrationInterface {
             referencedTableName: "empresas",
             referencedColumnNames: ["id"],
             columnNames: ["id_empresa"],
+            onDelete: "CASCADE",
+            onUpdate: "CASCADE",
+          },
+          {
+            name: "tipoguia",
+            referencedTableName: "tiposguia",
+            referencedColumnNames: ["id"],
+            columnNames: ["tipoguia"],
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
           },

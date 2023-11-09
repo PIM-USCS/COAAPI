@@ -10,7 +10,7 @@ interface IRequest {
   valor: string;
   status: string;
   id_empresa: string;
-  descricao: string;
+  tipoguia: string;
 }
 
 class UpdateCobrancaService {
@@ -21,7 +21,7 @@ class UpdateCobrancaService {
     status,
     id,
     id_empresa,
-    descricao,
+    tipoguia,
   }: IRequest): Promise<Cobrancas> {
     const cobrancaRepository = getCustomRepository(CobrancaRepository);
 
@@ -36,7 +36,7 @@ class UpdateCobrancaService {
     cobranca.emissao_cobranca = emissao_cobranca;
     cobranca.vencimento_cobranca = vencimento_cobranca;
     cobranca.id_empresa = id_empresa;
-    cobranca.descricao = descricao;
+    cobranca.tipoguia = tipoguia;
 
     await cobrancaRepository.save(cobranca);
     return cobranca;

@@ -41,7 +41,7 @@ export default class CobrancasController {
         valor,
         arquivo,
         status,
-        descricao,
+        tipoguia,
       } = request.body;
 
       const { id_empresa } = request.params;
@@ -54,7 +54,7 @@ export default class CobrancasController {
         valor,
         status,
         id_empresa,
-        descricao,
+        tipoguia,
       });
       return response.json(cobranca);
     } catch (error) {
@@ -82,7 +82,7 @@ export default class CobrancasController {
         status,
         valor,
         id_empresa,
-        descricao,
+        tipoguia,
       } = request.body;
 
       const { id } = request.params;
@@ -95,7 +95,7 @@ export default class CobrancasController {
         status,
         valor,
         id_empresa,
-        descricao,
+        tipoguia,
       });
 
       return response.json(cobranca);

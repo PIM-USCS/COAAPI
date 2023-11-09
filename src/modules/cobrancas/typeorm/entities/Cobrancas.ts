@@ -1,3 +1,4 @@
+import Tiposguia from "../../../tiposguia/typeorm/entities/Tiposguia";
 import Empresa from "../../../empresas/typeorm/entities/Empresa";
 import {
   Entity,
@@ -33,11 +34,15 @@ export class Cobrancas {
   id_empresa: string;
 
   @Column()
-  descricao: string;
+  tipoguia: string;
 
   @ManyToOne(() => Empresa, (empresa) => empresa.id)
   @JoinColumn({ name: "id_empresa" })
   empresa: Empresa;
+
+  @ManyToOne(() => Tiposguia, (tiposguia) => tiposguia.id)
+  @JoinColumn({ name: "tipoguia" })
+  tiposguia: Tiposguia;
 
   @CreateDateColumn()
   created_at: Date;

@@ -26,7 +26,7 @@ cobrancasRouter.post(
       arquivo: Joi.string(),
       valor: Joi.string(),
       status: Joi.string(),
-      descricao: Joi.string(),
+      tipoguia: Joi.string(),
     },
   }),
   cobrancasController.create
@@ -51,7 +51,7 @@ cobrancasRouter.put(
       status: Joi.string(),
       vencimento_cobranca: Joi.string(),
       id_empresa: Joi.string(),
-      descricao: Joi.string(),
+      tipoguia: Joi.string(),
     },
     [Segments.PARAMS]: {
       id: Joi.string().required(),

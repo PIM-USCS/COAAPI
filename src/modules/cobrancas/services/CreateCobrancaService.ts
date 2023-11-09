@@ -9,7 +9,7 @@ interface IRequest {
   status: string;
   arquivo: string;
   id_empresa: string;
-  descricao: string;
+  tipoguia: string;
 }
 
 class CreateCobrancaService {
@@ -20,7 +20,7 @@ class CreateCobrancaService {
     status,
     arquivo,
     id_empresa,
-    descricao,
+    tipoguia,
   }: IRequest): Promise<Cobrancas> {
     const cobrancaRepository = getCustomRepository(CobrancaRepository);
 
@@ -31,7 +31,7 @@ class CreateCobrancaService {
       status,
       arquivo,
       id_empresa,
-      descricao,
+      tipoguia,
     });
 
     await cobrancaRepository.save(cobranca);

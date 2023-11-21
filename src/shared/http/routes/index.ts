@@ -24,7 +24,7 @@ routes.use("/recibos", reciboRouter);
 routes.use("/cobrancas", cobrancasRouter);
 routes.use("/dashboard", dashboardRouter);
 routes.use("/uploads", uploadsRouter);
-routes.use("tiposguia", tiposguiaRouter);
+routes.use("/tiposguia", tiposguiaRouter);
 routes.get("/", (request, response) => {
   return response.json({ message: "Hello Dev!" });
 });

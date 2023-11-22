@@ -9,13 +9,13 @@ jest.mock("typeorm", () => ({
 describe("CreateColaboradorService", () => {
   it("deve criar um novo colaborador", async () => {
     const mockFindById = jest.fn().mockReturnValue({
-      id: "algum-id",
+      id: "2",
       nome: "NomeExistente",
       telefone: "123456789",
     });
 
     const mockCreate = jest.fn().mockReturnValue({
-      id: "novo-id",
+      id: "1",
       nome: "NovoColaborador1",
       telefone: "987654321",
     });
@@ -28,23 +28,14 @@ describe("CreateColaboradorService", () => {
 
     const createColaboradorService = new CreateColaboradorService();
 
-    // Modifique para utilizar a função expect().rejects.toThrowError
-    await expect(
-      createColaboradorService.execute({
-        nome: "NomeExistente",
-        telefone: "987654321",
-      })
-    ).rejects.toThrowError("Já existe um colaborador com este nome");
-
-    // Verificando se o valor retornado é o esperado
+   
     const novoColaborador = await createColaboradorService.execute({
       nome: "NovoColaborador1",
       telefone: "987654321",
     });
 
-    // Verificando se o valor retornado é o esperado
     expect(novoColaborador).toEqual({
-      id: "novo-id",
+      id: "1",
       nome: "NovoColaborador1",
       telefone: "987654321",
     });

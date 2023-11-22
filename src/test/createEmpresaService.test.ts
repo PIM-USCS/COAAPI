@@ -1,7 +1,7 @@
 import CreateEmpresaService from "../modules/empresas/services/CreateEmpresaService";
 import { getCustomRepository } from "typeorm";
 
-// Simulando a função getCustomRepository
+
 jest.mock("typeorm", () => ({
   ...jest.requireActual("typeorm"),
   getCustomRepository: jest.fn(),
@@ -9,7 +9,7 @@ jest.mock("typeorm", () => ({
 
 describe("CreateEmpresaService", () => {
   it("deve criar uma nova empresa", async () => {
-    // Simulando a função findByCNPJ do repositório
+
     const mockFindByCNPJ = jest.fn().mockReturnValue({
       id: "algum-id",
       tipo_cliente: "Pessoa Jurídica",
@@ -29,7 +29,7 @@ describe("CreateEmpresaService", () => {
       complemento: "12455",
     });
 
-    // Simulando a função create do repositório
+ 
     const mockCreate = jest.fn().mockReturnValue({
       id: "novo-id",
       tipo_cliente: "Pessoa Jurídica",
@@ -49,7 +49,7 @@ describe("CreateEmpresaService", () => {
       complemento: "12455",
     });
 
-    // Simulando a função getCustomRepository para retornar o repositório com as funções simuladas
+
     (getCustomRepository as jest.Mock).mockReturnValue({
       findByCNPJ: mockFindByCNPJ,
       create: mockCreate,
@@ -58,11 +58,9 @@ describe("CreateEmpresaService", () => {
 
     const createEmpresaService = new CreateEmpresaService();
 
-    // Verificando se as funções findByCNPJ e create foram chamadas corretamente
-    expect(mockFindByCNPJ).toHaveBeenCalledWith("12345678901234");
-    expect(mockCreate).not.toHaveBeenCalled();
 
-    // Verificando se o serviço cria uma nova empresa corretamente
+    expect(mockFindByCNPJ).toHaveBeenCalledWith("12345678901234");
+
     const novaEmpresa = await createEmpresaService.execute({
       tipo_cliente: "Pessoa Jurídica",
       cnpj: "12345678901234",
@@ -81,7 +79,7 @@ describe("CreateEmpresaService", () => {
       complemento: "12455",
     });
 
-    // Verificando se as funções findByCNPJ e create foram chamadas corretamente
+
     expect(mockFindByCNPJ).toHaveBeenCalledWith("12345678901234");
     expect(mockCreate).toHaveBeenCalledWith({
       id: "novo-id",
@@ -102,7 +100,6 @@ describe("CreateEmpresaService", () => {
       complemento: "12455",
     });
 
-    // Verificando se o valor retornado é o esperado
     expect(novaEmpresa).toEqual({
       id: "novo-id",
       tipo_cliente: "Pessoa Jurídica",

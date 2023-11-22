@@ -55,7 +55,7 @@ describe("CreateClienteService", () => {
       email: "joao@email.com.br",
       id_empresa: "1",
     });
-    // Verifica se o valor é o esperado do banco
+
     expect(cliente).toEqual({
       cpf: "123456789",
       rg: "987654321",

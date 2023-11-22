@@ -57,7 +57,7 @@ describe("CreateCobrancaService", () => {
       tipoguia: "Boleto",
     });
 
-    // Verificando se o valor retornado é o esperado
+    
     expect(cobranca).toEqual({
       vencimento_cobranca: "2023-12-01",
       emissao_cobranca: "2023-11-01",
